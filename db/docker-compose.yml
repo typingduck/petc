@@ -1,0 +1,13 @@
+version: '3'
+services:
+  couchdb:
+    image: "couchdb:2.1.1"
+    ports:
+      - 9999:5984
+    environment:
+      # test/development credentials
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+    volumes:
+      - ./data:/opt/couchdb/data
+
