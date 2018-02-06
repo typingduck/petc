@@ -10,8 +10,8 @@ const express = require('express')
 const requestLogger = require('morgan')
 const jsonpatch = require('json-patch')
 
-const config = require('./conf/config.js')
-const log = require('./conf/log.js')
+const config = require('./conf/config')
+const log = require('./conf/log')
 
 /**
  * Setup
@@ -81,6 +81,15 @@ app.patch('/docs/:docId', async (req, res, next) => {
     next(err)
   }
 })
+
+
+/**
+ * Used by web sockets to apply continuous diffs
+ */
+app.applyPatches = (patches) => {
+  // TODO: fill in function
+  log.info('apply patches:', patches)
+}
 
 /**
  * Error handling

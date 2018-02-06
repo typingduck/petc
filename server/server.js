@@ -1,21 +1,17 @@
 /**
  * Wraps the API app in a http server
  */
-const http = require('http')
 
-const app = require('./api')
-const config = require('./conf/config.js')
-const log = require('./conf/log.js')
+const {http} = require('./socket')
 
-var server = http.createServer(app)
-server.listen(config.SERVER_PORT)
-
-server.on('error', onError)
-server.on('listening', onListening)
+const log = require('./conf/log')
+const config = require('./conf/config')
 
 function onListening () {
   log.info('listening on %s ...', config.SERVER_PORT)
 }
+
+http.on('listening', onListening)
 
 function onError (error) {
   if (error.syscall !== 'listen') {
@@ -36,3 +32,7 @@ function onError (error) {
     throw error
   }
 }
+
+http.on('error', onError)
+
+http.listen(config.SERVER_PORT)
