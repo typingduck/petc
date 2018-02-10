@@ -67,11 +67,8 @@ app.put('/docs/:docId', async (req, res, next) => {
 app.patch('/docs/:docId', async (req, res, next) => {
   try {
     const docId = req.params.docId
-    const { data } = await db().get('/petc/' + docId)
-    const doc = data
-    jsonpatch.apply(doc, req.body)
-    const resp = await db().put('/petc/' + docId, doc)
-    doc._rev = resp.data.rev
+    const patches = req.body
+    const doc = await app.applyPatches(docId, patches)
     res.send(doc)
   } catch (err) {
     err.status = err.response && err.response.status
@@ -84,11 +81,32 @@ app.patch('/docs/:docId', async (req, res, next) => {
 
 
 /**
- * Used by web sockets to apply continuous diffs
+ * Apply patches to a document.
+ * Added to the `app` to make public for use by sockets to apply updates too.
  */
-app.applyPatches = (patches) => {
-  // TODO: fill in function
-  log.info('apply patches:', patches)
+app.applyPatches = async (docId, patches) => {
+  try {
+    log.info(`apply patches to doc ${docId}:`, patches)
+    const { data } = await db().get('/petc/' + docId)
+    const doc = data
+    jsonpatch.apply(doc, patches)
+    const resp = await db().put('/petc/' + docId, doc)
+    doc._rev = resp.data.rev
+    log.info(`apply patches to doc ${docId} done succesfully`)
+    return doc
+  } catch (err) {
+    if (err.response && err.response.status === 409) {
+      // There is an obvious race condition between getting the document
+      // and saving it when multiple callers are applying changes. This
+      // could be fixed with a semaphore to lock the update function but it is
+      // a little simpler to let the database do the heavy lifting and retry
+      // when the database notifies that the document is outdated.
+      return app.applyPatches(docId, patches)
+    } else {
+      log.info(`apply patches to doc ${docId} resp:`, err.message)
+      throw err
+    }
+  }
 }
 
 /**
