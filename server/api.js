@@ -69,6 +69,7 @@ app.patch('/docs/:docId', async (req, res, next) => {
     const docId = req.params.docId
     const patches = req.body
     const doc = await app.applyPatches(docId, patches)
+    app.emitPatches(docId, patches)
     res.send(doc)
   } catch (err) {
     err.status = err.response && err.response.status
@@ -107,6 +108,13 @@ app.applyPatches = async (docId, patches) => {
       throw err
     }
   }
+}
+
+/**
+ * Allows sockets to receive updates that are applied through http request.
+ */
+app.emitPatches = (docId, patches) => {
+  app.emit('doc-patch', docId, patches)
 }
 
 /**

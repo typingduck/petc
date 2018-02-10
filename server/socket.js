@@ -7,7 +7,6 @@ const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const log = require('./conf/log')
 
-
 io.on('connection', socket => {
   var docId = null
 
@@ -30,6 +29,11 @@ io.on('connection', socket => {
     // user disconnected
     log.info('user disconnected from doc:', docId)
   })
+})
+
+app.on('doc-patch', (docId, patches) => {
+  log.info(`doc: ${docId} emitting patch:`, patches)
+  io.in(docId).emit('doc-patch', patches)
 })
 
 module.exports = {http, io}

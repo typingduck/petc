@@ -33,10 +33,6 @@ describe('socket clients', () => {
       .expect(200, done)
   })
 
-  after(done => {
-    io.close(done)
-  })
-
   it('should broadcast patches to other clients', done => {
     var client1 = cio.connect(serverAddress)
     var numClientReceivedEvents = 0
@@ -88,6 +84,49 @@ describe('socket clients', () => {
   })
 
 })
+
+
+describe('http clients to sockets', () => {
+  const serverAddress = request(http).get('/').url
+  const docId = uuid()
+
+  const docValue = {}
+  const httpPatch = { 'op': 'add', 'path': '/a', 'value': 1 }
+
+  before(done => {
+    // Add test doc
+    request(http)
+      .put(`/docs/${docId}`)
+      .send(docValue)
+      .expect(200, done)
+  })
+
+  after(done => {
+    io.close(done)
+  })
+
+  it('should broadcast patches to clients', done => {
+    var socketClient = cio.connect(serverAddress)
+
+    socketClient.on('connect', () => {
+      socketClient.emit('doc-select', docId)
+
+      socketClient.on('doc-patch', msg => {
+        assert.deepEqual(msg, httpPatch)
+        socketClient.disconnect()
+        done()
+      })
+
+      request(http)
+        .patch(`/docs/${docId}`)
+        .send(httpPatch)
+        .expect(200, (err) => {
+          if (err) done(err)
+        })
+    })
+  })
+})
+
 
 function removeMetaKeys (response) {
   delete response.body['_id']
