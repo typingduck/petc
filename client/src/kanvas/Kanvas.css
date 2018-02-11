@@ -1,0 +1,14 @@
+#petc-kanvas-container {
+  background-color: #FFF;
+  border-radius: 10px;
+  border: 1px solid #BBB;
+  bottom: 5px;
+  box-shadow: 1px 1px 7px #888888;
+  left: 5px;
+  margin: 5px 5px 10px 5px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}

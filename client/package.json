@@ -1,0 +1,27 @@
+{
+  "name": "pannus-et-circulos",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "enumify": "^1.0.4",
+    "immutable": "^3.8.2",
+    "jsplumb": "^2.5.12",
+    "nano": "^6.4.2",
+    "pan-zoom": "^2.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-draggable": "^3.0.4",
+    "react-icons": "^2.2.7",
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.0.14",
+    "redux": "^3.7.2",
+    "rxjs": "^5.5.6",
+    "uuid": "^3.1.0"
+  },
+  "scripts": {
+    "start": "PORT=3333 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

@@ -1,0 +1,20 @@
+:root {
+  --modal-z-index-page-detail: 10;
+}
+
+body {
+  background-color: #EEE;
+  margin:0;
+  padding:0;
+}
+
+h1 {
+  bottom: 25px;
+  color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: 130px;
+  text-align: center;
+  width: 70px;
+  z-index: var(--modal-z-index-page-detail)
+}
+
