@@ -1,0 +1,16 @@
+{
+  "name": "pannus_et_circulos",
+  "version": "0.0.1",
+  "author": "typingduck",
+  "description": "Paper and circles",
+  "license": "UNLICENSED",
+  "repository": "none",
+  "dependencies": {
+    "concurrently": "^3.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "postinstall": "concurrently \"cd server && npm install\" \"cd client && npm install\" ",
+    "start": "concurrently \"cd db && docker-compose up\" \"cd server && npm start\" \"cd client && npm start\""
+  }
+}

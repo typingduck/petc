@@ -11,7 +11,12 @@ good enough to start with.
 
 The very first time when starting need to create the database:
 
-    curl -X PUT "http://admin:password@127.0.0.1:9999/petc
+## Create Database
+
+    curl -X PUT http://admin:password@127.0.0.1:9999/_users
+    curl -X PUT http://admin:password@127.0.0.1:9999/_replicator
+    curl -X PUT http://admin:password@127.0.0.1:9999/_global_changes
+    curl -X PUT http://admin:password@127.0.0.1:9999/petc
 
 (data goes into `data/` folder by default so is saved between restarts).
 
