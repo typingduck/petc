@@ -22,6 +22,11 @@
     "start": "PORT=3333 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "itest": "node conf/testcafe_spec_runner.js",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "testcafe": "^0.18.6"
   }
 }
