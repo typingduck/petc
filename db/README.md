@@ -7,16 +7,16 @@ good enough to start with.
 
     docker-compose up -d
 
-(runs database on port 9999)
+(runs database on port 5002)
 
 The very first time when starting need to create the database:
 
 ## Create Database
 
-    curl -X PUT http://admin:password@127.0.0.1:9999/_users
-    curl -X PUT http://admin:password@127.0.0.1:9999/_replicator
-    curl -X PUT http://admin:password@127.0.0.1:9999/_global_changes
-    curl -X PUT http://admin:password@127.0.0.1:9999/petc
+    curl -X PUT http://admin:password@127.0.0.1:5002/_users
+    curl -X PUT http://admin:password@127.0.0.1:5002/_replicator
+    curl -X PUT http://admin:password@127.0.0.1:5002/_global_changes
+    curl -X PUT http://admin:password@127.0.0.1:5002/petc
 
 (data goes into `data/` folder by default so is saved between restarts).
 
@@ -25,16 +25,16 @@ The very first time when starting need to create the database:
 
 #### Add document
 
-    curl -X POST -H 'Content-Type: application/json' -d '{"some": "json"}' 'http://admin:password@127.0.0.1:9999/petc'
+    curl -X POST -H 'Content-Type: application/json' -d '{"some": "json"}' 'http://admin:password@127.0.0.1:5002/petc'
 
 or
 
-    curl -X PUT -H 'Content-Type: application/json' -d '{"some": "json"}' 'http://admin:password@127.0.0.1:9999/petc/mydocid'
+    curl -X PUT -H 'Content-Type: application/json' -d '{"some": "json"}' 'http://admin:password@127.0.0.1:5002/petc/mydocid'
 
 #### Show number of documents
 
-    curl -X GET 'http://admin:password@127.0.0.1:9999/petc'  | jq .doc_count
+    curl -X GET 'http://admin:password@127.0.0.1:5002/petc'  | jq .doc_count
 
 #### Get all document ids
 
-    curl -X GET 'http://admin:password@127.0.0.1:9999/petc/_all_docs' | jq '.rows | map(.id)'
+    curl -X GET 'http://admin:password@127.0.0.1:5002/petc/_all_docs' | jq '.rows | map(.id)'
