@@ -1,12 +1,13 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
 import './HomePage.css'
-import createNewDoc from './model/model.js'
+import {createNewDoc} from './model/model.js'
 
 /**
  * Default home page. Shown before user starts editing document.
  */
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
   constructor (props) {
     super(props)
 
@@ -15,9 +16,10 @@ export default class HomePage extends React.Component {
   }
 
   handleClick () {
-    console.log('create new')
-    const doc = createNewDoc()
-    console.log('create new: ' + JSON.stringify(doc))
+    const history = this.props.history
+    createNewDoc().then(doc => {
+      history.push('/docs/' + doc.id)
+    })
   }
 
   render () {
@@ -28,3 +30,5 @@ export default class HomePage extends React.Component {
     )
   }
 }
+
+export default withRouter(HomePage)
