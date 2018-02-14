@@ -7,8 +7,8 @@
 const axios = require('axios')
 var bodyParser = require('body-parser')
 const express = require('express')
-const requestLogger = require('morgan')
 const jsonpatch = require('json-patch')
+const requestLogger = require('morgan')
 
 const config = require('./conf/config')
 const log = require('./conf/log')
@@ -25,10 +25,32 @@ if (!process.env.LOADED_MOCHA_OPTS) {
 
 app.use(bodyParser.json())
 
+// Allows CORS requests.
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
+  next()
+})
+
 /**
  * Homepage
  */
 app.get('/', (req, res) => res.send('API: Pannus et Circulos (Cloth and Circles)'))
+
+/**
+ * Post to create a new document.
+ */
+app.post('/docs', async (req, res, next) => {
+  try {
+    const { data } = await db().post('/petc/', req.body)
+    log.info('created new doc:' + data.id)
+    res.send(data)
+  } catch (err) {
+    err.status = err.response && err.response.status
+    next(err)
+  }
+})
 
 /**
  * Get document.
@@ -79,7 +101,6 @@ app.patch('/docs/:docId', async (req, res, next) => {
     next(err)
   }
 })
-
 
 /**
  * Apply patches to a document.

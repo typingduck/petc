@@ -5,6 +5,10 @@ For storing and retrieving a JSON document as well as applying JSON patches
 
 ## API
 
+* **POST** `/docs`
+
+> Create a new JSON document.
+
 * **PUT** `/docs/:docId`
 
 > Store a new JSON document.
