@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="petc-homepage"
+>
+  <a
+    href="#new"
+    onClick={[Function]}
+  >
+    Create New
+  </a>
+</div>
+`;
