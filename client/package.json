@@ -5,6 +5,7 @@
   "dependencies": {
     "enumify": "^1.0.4",
     "immutable": "^3.8.2",
+    "json-patch": "^0.7.0",
     "jsplumb": "^2.5.12",
     "nano": "^6.4.2",
     "pan-zoom": "^2.0.0",
@@ -17,6 +18,7 @@
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
     "rxjs": "^5.5.6",
+    "socket.io-client": "^2.0.4",
     "uuid": "^3.1.0"
   },
   "scripts": {

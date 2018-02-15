@@ -1,17 +1,22 @@
 import React from 'react'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
-import './App.css'
+import './index.css'
+import {store, connectStore} from './store'
 
 import HomePage from './HomePage'
+import DocumentPage from './DocumentPage'
 
-function App () {
-  return (
-    <Switch>
-      <Route exact path='/' component={HomePage} />
-      <Route path='/docs:number' component={React.Component} />
-    </Switch>
-  )
-}
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route path='/docs/:docId' component={connectStore(DocumentPage)} />
+      </Switch>
+    </BrowserRouter>
+  </Provider>
+)
 
-export default withRouter(App)
+export default App

@@ -1,4 +1,4 @@
-#petc-kanvas-container {
+.petc-kanvas {
   background-color: #FFF;
   border-radius: 10px;
   border: 1px solid #BBB;
@@ -11,4 +11,13 @@
   position: absolute;
   right: 5px;
   top: 5px;
+}
+
+.petc-kanvas .node {
+  border-radius: 20px;
+  border: 10px solid grey;
+  display: block;
+  height: 16px;
+  position: absolute;
+  width: 16px;
 }
