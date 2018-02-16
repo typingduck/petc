@@ -21,7 +21,7 @@ io.on('connection', socket => {
   socket.on('doc-patch', patchOp => {
     if (docId) {
       app.applyPatches(docId, patchOp)
-      socket.broadcast.emit('doc-patch', patchOp)
+      socket.to(docId).emit('doc-patch', patchOp)
     }
   })
 
@@ -33,7 +33,7 @@ io.on('connection', socket => {
 
 app.on('doc-patch', (docId, patches) => {
   log.info(`doc: ${docId} emitting patch:`, patches)
-  io.in(docId).emit('doc-patch', patches)
+  io.to(docId).emit('doc-patch', patches)
 })
 
 module.exports = {http, io}

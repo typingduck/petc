@@ -139,10 +139,6 @@ describe('socket patch conflicts', () => {
       .expect(200, done)
   })
 
-  after(done => {
-    io.close(done)
-  })
-
   it('clients and db should agree on state', done => {
     var client1 = cio.connect(serverAddress)
     client1.on('connect', () => {
@@ -189,6 +185,79 @@ describe('socket patch conflicts', () => {
         })
     }
     testDocument()
+  })
+})
+
+describe('different document clients', () => {
+  const serverAddress = request(http).get('/').url
+  const doc1 = uuid()
+  const doc2 = uuid()
+
+  const docValue = {}
+  const patch = { 'op': 'add', 'path': '/a', 'value': 1 }
+
+  before(done => {
+    // Add test doc
+    request(http)
+      .put(`/docs/${doc1}`)
+      .send(docValue)
+      .expect(200, () =>
+        request(http)
+          .put(`/docs/${doc2}`)
+          .send(docValue)
+          .expect(200, done)
+      )
+  })
+
+  after(done => {
+    io.close(done)
+  })
+
+  it('should not broadcast patches to each other', done => {
+    var client1 = cio.connect(serverAddress)
+    var client2 = cio.connect(serverAddress)
+    var numClientReceivedEvents = 0
+
+    client1.on('connect', () => {
+      client1.emit('doc-select', doc1)
+      client1.on('doc-patch', () => {
+        numClientReceivedEvents++
+      })
+
+      client2.on('connect', () => {
+        client2.emit('doc-select', doc2)
+        client2.on('doc-patch', () => {
+          numClientReceivedEvents++
+        })
+        client1.emit('doc-patch', patch)
+        client2.emit('doc-patch', patch)
+
+        // wait for messages to maybe be sent to other clients
+        setTimeout(() => {
+          client1.disconnect()
+          client2.disconnect()
+        }, 100)
+
+        let retries = 10
+        function waitForDisconnection() {
+          if (client1.connected && client2.connected) {
+            setTimeout(waitForDisconnection)
+          } else {
+            retries--
+            if(numClientReceivedEvents === 0) {
+              done()
+            } else if (numClientReceivedEvents > 0) {
+              done(Error('events sent to clients of different docs'))
+            } else if (retries > 0) {
+              setTimeout(waitForDisconnection)
+            } else {
+              done(Error('timeout waiting for zero events'))
+            }
+          }
+        }
+        waitForDisconnection()
+      })
+    })
   })
 })
 

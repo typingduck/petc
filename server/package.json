@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "nodemon -w api.js -w server.js -w conf/ server.js",
+    "start": "nodemon -w api.js -w server.js -w socket.js -w conf/ server.js",
     "test": "mocha test",
     "lint": "eslint *.js {conf,test}/*.js"
   },
