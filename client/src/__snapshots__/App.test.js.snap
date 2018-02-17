@@ -2,14 +2,21 @@
 
 exports[`renders homepage 1`] = `
 <div
-  className="petc-homepage"
+  className="petc-pageview"
 >
-  <a
-    href="#new"
-    id="petc-create-new"
-    onClick={[Function]}
+  <h1>
+    pannus et circulos
+  </h1>
+  <div
+    className="petc-homepage"
   >
-    Create New
-  </a>
+    <a
+      href="#new"
+      id="petc-create-new"
+      onClick={[Function]}
+    >
+      Create New
+    </a>
+  </div>
 </div>
 `;

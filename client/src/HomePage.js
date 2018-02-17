@@ -1,8 +1,7 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
 
 import './HomePage.css'
-import {createNewDoc} from './model/model.js'
+import {createNewDoc} from './model/model'
 
 /**
  * Default home page. Shown before user starts editing document.
@@ -24,11 +23,14 @@ class HomePage extends React.Component {
 
   render () {
     return (
-      <div className='petc-homepage'>
-        <a id="petc-create-new" href='#new' onClick={this.newDocClick}>Create New</a>
+      <div className='petc-pageview'>
+        <h1>pannus et circulos</h1>
+        <div className='petc-homepage'>
+          <a id='petc-create-new' href='#new' onClick={this.newDocClick}>Create New</a>
+        </div>
       </div>
     )
   }
 }
 
-export default withRouter(HomePage)
+export default HomePage

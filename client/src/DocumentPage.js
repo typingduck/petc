@@ -4,7 +4,7 @@ import uuid from 'uuid/v4'
 import Kanvas from './kanvas/Kanvas'
 import NavBar from './controls/NavBar'
 import StoreView from './controls/StoreView'
-import {loadDoc, connectSocket} from './model/model.js'
+import {loadDoc, connectSocket} from './model/model'
 
 /**
  * Document view
@@ -18,6 +18,7 @@ export default class DocumentPage extends React.Component {
     this.setDoc = this.setDoc.bind(this)
     this.receiveUpdate = this.receiveUpdate.bind(this)
     this.setSocket = this.setSocket.bind(this)
+    this.networkFail = this.networkFail.bind(this)
   }
 
   receiveUpdate (patch) {
@@ -25,8 +26,20 @@ export default class DocumentPage extends React.Component {
   }
 
   componentDidMount () {
-    connectSocket(this.props.docId, this.receiveUpdate).then(this.setSocket)
-    loadDoc(this.props.docId).then(this.setDoc)
+    connectSocket(this.props.docId, this.receiveUpdate)
+      .then(this.setSocket)
+      .catch(this.networkFail)
+    loadDoc(this.props.docId)
+      .then(this.setDoc)
+      .catch(this.networkFail)
+  }
+
+  networkFail (err) {
+    // TODO: handle
+    /* eslint-disable no-console */
+    /* globals console */
+    console.error('err: ', err)
+    /* eslint-enable no-console */
   }
 
   setDoc (doc) {
@@ -46,8 +59,11 @@ export default class DocumentPage extends React.Component {
 
   render () {
     return (<div>
-      <NavBar {...this.props}/>
-      <Kanvas {...this.props} addNode={this.addNode} />
+      <NavBar {...this.props} />
+      <div className='petc-pageview'>
+        <h1>pannus et circulos</h1>
+        <Kanvas {...this.props} addNode={this.addNode} />
+      </div>
       <StoreView {...this.props} />
     </div>)
   }

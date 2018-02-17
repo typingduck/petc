@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-import './index.css'
 import {store, connectStore} from './store'
 
 import HomePage from './HomePage'
