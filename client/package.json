@@ -6,20 +6,20 @@
     "enumify": "^1.0.4",
     "immutable": "^3.8.2",
     "json-patch": "^0.7.0",
-    "jsplumb": "^2.5.12",
+    "jsplumb": "^2.6.7",
     "nano": "^6.4.2",
     "pan-zoom": "^2.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-draggable": "^3.0.4",
+    "react-draggable": "^3.0.5",
     "react-icons": "^2.2.7",
-    "react-redux": "^5.0.6",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
     "rxjs": "^5.5.6",
     "socket.io-client": "^2.0.4",
-    "uuid": "^3.1.0"
+    "uuid": "^3.2.1"
   },
   "scripts": {
     "start": "PORT=5000 react-scripts start",
@@ -30,6 +30,9 @@
   },
   "devDependencies": {
     "axios": "^0.17.1",
+    "eslint": "^4.18.0",
+    "eslint-plugin-react": "^7.6.1",
+    "mocha-eslint": "^4.1.0",
     "react-test-renderer": "^16.2.0",
     "testcafe": "^0.18.6"
   }

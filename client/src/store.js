@@ -4,6 +4,7 @@ import { fromJS } from 'immutable'
 import {combineReducers, createStore} from 'redux'
 
 import { initialDoc } from './model/model.js'
+import { initialViewMode } from './controls/NavBar.js'
 
 /**
  * Redux store for the document being edited and the UI state.
@@ -41,10 +42,11 @@ function docReducer (state, action) {
       return fromJS(action.doc)
     case Events.ADD_NODE:
       return state.update('nodes', n => n.push(action.node))
-    case Events.APPLY_PATCH:
+    case Events.APPLY_PATCH: {
       const doc = state.toJS()
       jsonpatch.apply(doc, action.patch)
       return fromJS(doc)
+    }
   }
   return state
 }

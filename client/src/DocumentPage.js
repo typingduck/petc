@@ -1,9 +1,9 @@
 import React from 'react'
 import uuid from 'uuid/v4'
 
-import {loadDoc, connectSocket} from './model/model.js'
 import Kanvas from './kanvas/Kanvas'
 import StoreView from './controls/StoreView'
+import {loadDoc, connectSocket} from './model/model.js'
 
 /**
  * Document view
@@ -48,7 +48,6 @@ export default class DocumentPage extends React.Component {
     return (<div>
       <Kanvas {...this.props} addNode={this.addNode} />
       <StoreView {...this.props} />
-      </div>
-    )
+    </div>)
   }
 }

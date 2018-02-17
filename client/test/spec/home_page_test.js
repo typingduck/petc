@@ -1,5 +1,5 @@
-/* global fixture location test */
-const { Selector } = require('testcafe')
+/* global fixture test */
+import { Selector } from 'testcafe'
 
 fixture `on home page`
   .page `http://localhost:5000`

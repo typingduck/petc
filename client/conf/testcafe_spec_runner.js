@@ -3,6 +3,9 @@
 const createTestCafe = require('testcafe')
 const glob = require('glob')
 
+/* global console process require */
+/* eslint-disable no-console */
+
 const testFiles = glob.sync('test/spec/**/*.js').filter(f => f.endsWith('test.js'))
 
 let testcafe = null
