@@ -14,8 +14,8 @@ export async function createNewDoc () {
 }
 
 export async function loadDoc (docId) {
-  const {data} = await db().get(`docs/${docId}`)
-  return data
+  const {data: doc} = await db().get(`docs/${docId}`)
+  return removeMetaKeys(doc)
 }
 
 export async function saveDoc (doc) {
@@ -39,4 +39,10 @@ function db () {
   return axios.create({
     baseURL: config.API_URL
   })
+}
+
+function removeMetaKeys (doc) {
+  delete doc['_id']
+  delete doc['_rev']
+  return doc
 }

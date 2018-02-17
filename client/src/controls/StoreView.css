@@ -1,0 +1,8 @@
+
+#petc-storeview {
+  border: 1px dashed #AAA;
+  left: 70%;
+  position: absolute;
+  top: 50%;
+  z-index: 0;
+}

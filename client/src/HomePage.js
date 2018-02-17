@@ -12,10 +12,10 @@ class HomePage extends React.Component {
     super(props)
 
     // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this)
+    this.newDocClick = this.newDocClick.bind(this)
   }
 
-  handleClick () {
+  newDocClick () {
     const history = this.props.history
     createNewDoc().then(doc => {
       history.push('/docs/' + doc.id)
@@ -25,7 +25,7 @@ class HomePage extends React.Component {
   render () {
     return (
       <div className='petc-homepage'>
-        <a href='#new' onClick={this.handleClick}>Create New</a>
+        <a href='#new' onClick={this.newDocClick}>Create New</a>
       </div>
     )
   }

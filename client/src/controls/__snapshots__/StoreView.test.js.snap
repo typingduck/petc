@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders storeview 1`] = `
+<pre
+  id="petc-storeview"
+>
+  {
+    "storeview": true
+  }
+  <hr />
+</pre>
+`;

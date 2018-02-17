@@ -3,6 +3,7 @@ import uuid from 'uuid/v4'
 
 import {loadDoc, connectSocket} from './model/model.js'
 import Kanvas from './kanvas/Kanvas'
+import StoreView from './controls/StoreView'
 
 /**
  * Document view
@@ -44,6 +45,10 @@ export default class DocumentPage extends React.Component {
   }
 
   render () {
-    return <Kanvas {...this.props} addNode={this.addNode} />
+    return (<div>
+      <Kanvas {...this.props} addNode={this.addNode} />
+      <StoreView {...this.props} />
+      </div>
+    )
   }
 }

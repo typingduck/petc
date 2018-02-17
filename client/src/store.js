@@ -12,6 +12,15 @@ import { initialDoc } from './model/model.js'
 /* eslint-disable comma-dangle */
 
 /**
+ * Starting state for controls
+ */
+function initialControls() {
+  return {
+    storeview: true
+  }
+}
+
+/**
  * All the events that can happen to the store.
  */
 const Events = {
@@ -45,7 +54,7 @@ function docReducer (state, action) {
  */
 function controlsReducer (state, action) {
   if (typeof state === 'undefined') {
-    return fromJS({})
+    return fromJS(initialControls())
   }
   return state
 }
