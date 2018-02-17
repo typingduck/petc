@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
+exports[`renders document page 1`] = `
 <div>
   <div
     id="petc-view-mode-control"
@@ -164,7 +164,7 @@ exports[`matches snapshot 1`] = `
   <pre
     id="petc-storeview"
   >
-    123
+    doc-id
     <br />
     VIEW_GRAPH
     <br />
@@ -176,5 +176,26 @@ exports[`matches snapshot 1`] = `
       "nodes": []
     }
   </pre>
+</div>
+`;
+
+exports[`renders homepage 1`] = `
+<div
+  className="petc-pageview"
+>
+  <h1>
+    pannus et circulos
+  </h1>
+  <div
+    className="petc-homepage"
+  >
+    <a
+      href="#new"
+      id="petc-create-new"
+      onClick={[Function]}
+    >
+      Create New
+    </a>
+  </div>
 </div>
 `;

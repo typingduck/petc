@@ -2,8 +2,8 @@
 import React from 'react'
 import Renderer from 'react-test-renderer'
 
-import StoreView from './StoreView'
-import {ViewMode} from './NavBar'
+import StoreView from '../StoreView'
+import {ViewMode} from '../NavBar'
 
 it('renders storeview', () => {
   const props = {
@@ -12,7 +12,7 @@ it('renders storeview', () => {
     controls: { storeview: true },
     docs: { a: 1 }
   }
-  const component = Renderer.create(<StoreView {...props}/>)
+  const component = Renderer.create(<StoreView {...props} />)
   expect(component.toJSON()).toMatchSnapshot()
 })
 
@@ -21,6 +21,6 @@ it('hides storeview when not debugging', () => {
     controls: { storeview: false },
     docs: { a: 1 }
   }
-  const component = Renderer.create(<StoreView {...props}/>)
+  const component = Renderer.create(<StoreView {...props} />)
   expect(component.toJSON()).toBeNull()
 })

@@ -2,10 +2,9 @@
 import React from 'react'
 import Renderer from 'react-test-renderer'
 
-import App from './App'
+import HomePage from '../HomePage'
 
-
-it('renders homepage', () => {
-  const component = Renderer.create(<App />)
+it('matches snapshot', () => {
+  const component = Renderer.create(<HomePage />)
   expect(component.toJSON()).toMatchSnapshot()
 })

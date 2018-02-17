@@ -3,7 +3,6 @@ import {MdRemoveRedEye, MdGames, MdDeviceHub, MdShuffle, MdCreateNewFolder} from
 import {Enum} from 'enumify'
 import './NavBar.css'
 
-
 export class ViewMode extends Enum {
   toJSON () {
     return this.name
@@ -26,13 +25,12 @@ ViewMode.isNodeMode = function (state) {
   return state.viewMode === ViewMode.EDIT_NODES
 }
 
-
 const VIEW_BUTTONS = [
   [ViewMode.VIEW_GRAPH, 'petc-vmc-view', '#view', MdRemoveRedEye],
   [ViewMode.PAN_N_ZOOM, 'petc-vmc-zpan', '#zpan', MdGames],
   [ViewMode.EDIT_NODES, 'petc-vmc-node', '#node', MdDeviceHub],
   [ViewMode.EDIT_EDGES, 'petc-vmc-edge', '#edge', MdShuffle],
-  [ViewMode.CREATE_NEW, 'petc-vmc-demo', '/', MdCreateNewFolder],
+  [ViewMode.CREATE_NEW, 'petc-vmc-demo', '/', MdCreateNewFolder]
 ]
 
 export function viewModeFromHash (locationHash) {
@@ -49,12 +47,11 @@ export function viewModeFromHash (locationHash) {
 }
 
 export default class NavBar extends React.Component {
-
-  getClass(mode) {
+  getClass (mode) {
     return mode === this.props.viewMode ? 'active' : ''
   }
 
-  render() {
+  render () {
     const buttons = VIEW_BUTTONS.map(([mode, buttonId, href, icon]) =>
       <li key={mode.toString()} className={this.getClass(mode)}>
         <a id={buttonId} href={href}>{React.createElement(icon)}</a>

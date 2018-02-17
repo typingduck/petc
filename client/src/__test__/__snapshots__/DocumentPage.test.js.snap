@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div>
+  <NavBar
+    controls={
+      Object {
+        "storeview": true,
+      }
+    }
+    doc={
+      Object {
+        "nodes": Array [],
+      }
+    }
+    docId="123"
+    docLoaded={[Function]}
+    viewMode={"VIEW_GRAPH"}
+  />
+  <div
+    className="petc-pageview"
+  >
+    <h1>
+      pannus et circulos
+    </h1>
+    <Kanvas
+      addNode={[Function]}
+      controls={
+        Object {
+          "storeview": true,
+        }
+      }
+      doc={
+        Object {
+          "nodes": Array [],
+        }
+      }
+      docId="123"
+      docLoaded={[Function]}
+      viewMode={"VIEW_GRAPH"}
+    />
+  </div>
+  <StoreView
+    controls={
+      Object {
+        "storeview": true,
+      }
+    }
+    doc={
+      Object {
+        "nodes": Array [],
+      }
+    }
+    docId="123"
+    docLoaded={[Function]}
+    viewMode={"VIEW_GRAPH"}
+  />
+</div>
+`;
