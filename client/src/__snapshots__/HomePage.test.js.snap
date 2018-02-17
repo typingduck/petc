@@ -6,6 +6,7 @@ exports[`matches snapshot 1`] = `
 >
   <a
     href="#new"
+    id="petc-create-new"
     onClick={[Function]}
   >
     Create New

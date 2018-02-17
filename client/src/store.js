@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { fromJS } from 'immutable'
 import {combineReducers, createStore} from 'redux'
 
-import { initialDoc } from './model/model.js'
-import { initialViewMode } from './controls/NavBar.js'
+import { initialDoc } from './model/model'
+import { viewModeFromHash } from './controls/NavBar'
 
 /**
  * Redux store for the document being edited and the UI state.
@@ -15,7 +15,7 @@ import { initialViewMode } from './controls/NavBar.js'
 /**
  * Starting state for controls
  */
-function initialControls() {
+function initialControls () {
   return {
     storeview: true
   }
@@ -24,11 +24,13 @@ function initialControls() {
 /**
  * All the events that can happen to the store.
  */
+/* eslint-disable key-spacing */
 const Events = {
-  DOC_LOADED: Symbol('DOC_LOADED'),
-  ADD_NODE: Symbol('ADD_NODE'),
+  DOC_LOADED:  Symbol('DOC_LOADED'),
+  ADD_NODE:    Symbol('ADD_NODE'),
   APPLY_PATCH: Symbol('APPLY_PATCH'),
 }
+/* eslint-enable key-spacing */
 
 /**
  * State change for the 'doc' document part of the app state.
@@ -47,23 +49,26 @@ function docReducer (state, action) {
       jsonpatch.apply(doc, action.patch)
       return fromJS(doc)
     }
+    default:
+      return state
   }
-  return state
 }
 
 /**
- * State change for the UI part of the app state.
+ * State change for the 'controls' UI part of the app state.
  */
 function controlsReducer (state, action) {
   if (typeof state === 'undefined') {
     return fromJS(initialControls())
   }
-  return state
+  switch (action.type) {
+    default:
+      return state
+  }
 }
 
-
 /**
- * Combine all reduces into a single global one.
+ * Combine all reducers into a single global one.
  */
 const rootReducer = combineReducers({
   doc: docReducer,
@@ -71,39 +76,41 @@ const rootReducer = combineReducers({
 })
 
 /**
- * The redux store for use in by a Provider
+ * The redux store for use by a redux Provider.
  */
 export const store = createStore(rootReducer)
 
-
 /**
- * Maps what gets passed as props to the compoents.
+ * Sets what gets passed as props to the component wrapped with connectStore.
  */
-const mapStateToProps = (state, ownProps) => {
+function mapStateToProps (state, ownProps) {
   return {
+    docId: ownProps.match.params.docId,  // set by BrowserRouter in App.
+    viewMode: viewModeFromHash(ownProps.location.hash),
     doc: state.doc.toJS(),
     controls: state.controls.toJS()
   }
 }
 
 /**
- * Functions passed as props to the components for them to use to emit
- * state update events.
+ * Actions passed as props to the components to emit state change events.
  */
-const mapDispatchToProps = dispatch => {
+function mapDispatchToProps (dispatch) {
   /* eslint-disable indent */
   /* eslint-disable key-spacing */
   return {
+
      docLoaded:   doc => dispatch({ type: Events.DOC_LOADED, doc }),
        addNode:  node => dispatch({ type: Events.ADD_NODE, node }),
     applyPatch: patch => dispatch({ type: Events.APPLY_PATCH, patch }),
+
   }
   /* eslint-enable key-spacing */
   /* eslint-enable indent */
 }
 
 /**
- * Wrap a react component so that it has the redux state/methods above.
+ * Wrap a react component so that it has the above state/actions as props.
  */
 export function connectStore (component) {
   return connect(

@@ -4,6 +4,10 @@ exports[`renders storeview 1`] = `
 <pre
   id="petc-storeview"
 >
+  123
+  <br />
+  VIEW_GRAPH
+  <br />
   {
     "storeview": true
   }

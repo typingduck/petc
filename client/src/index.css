@@ -1,6 +1,14 @@
 :root {
-  --modal-z-index-page-detail: 10;
+  --modal-bg: rgba(210, 210, 210, 0.5);
+  --modal-border-radius: 10px;
+  --modal-border: 2px solid #666;
+  --modal-box-shadow: 2px 2px 5px rgba(200, 200, 200, 0.25);
+
+  --z-index-h1: 10;
+  --z-index-kanvas: 1;
+  --z-index-modal: 10;
 }
+
 
 body {
   background-color: #EEE;
@@ -15,6 +23,6 @@ h1 {
   right: 130px;
   text-align: center;
   width: 70px;
-  z-index: var(--modal-z-index-page-detail)
+  z-index: var(--z-index-h1)
 }
 

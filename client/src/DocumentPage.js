@@ -2,6 +2,7 @@ import React from 'react'
 import uuid from 'uuid/v4'
 
 import Kanvas from './kanvas/Kanvas'
+import NavBar from './controls/NavBar'
 import StoreView from './controls/StoreView'
 import {loadDoc, connectSocket} from './model/model.js'
 
@@ -11,7 +12,6 @@ import {loadDoc, connectSocket} from './model/model.js'
 export default class DocumentPage extends React.Component {
   constructor (props) {
     super(props)
-    this.docId = props.match.params.docId
     this.socket = null
 
     this.addNode = this.addNode.bind(this)
@@ -25,8 +25,8 @@ export default class DocumentPage extends React.Component {
   }
 
   componentDidMount () {
-    connectSocket(this.docId, this.receiveUpdate).then(this.setSocket)
-    loadDoc(this.docId).then(this.setDoc)
+    connectSocket(this.props.docId, this.receiveUpdate).then(this.setSocket)
+    loadDoc(this.props.docId).then(this.setDoc)
   }
 
   setDoc (doc) {
@@ -46,6 +46,7 @@ export default class DocumentPage extends React.Component {
 
   render () {
     return (<div>
+      <NavBar {...this.props}/>
       <Kanvas {...this.props} addNode={this.addNode} />
       <StoreView {...this.props} />
     </div>)

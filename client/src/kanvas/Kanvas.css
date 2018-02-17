@@ -11,6 +11,7 @@
   position: absolute;
   right: 5px;
   top: 5px;
+  z-index: var(--z-index-kanvas);
 }
 
 .petc-kanvas .node {

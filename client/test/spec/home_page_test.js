@@ -1,11 +1,13 @@
 /* global fixture test */
+/* eslint template-tag-spacing: ["error", "always"] */
+
 import { Selector } from 'testcafe'
 
 fixture `on home page`
   .page `http://localhost:5000`
 
 const titleEle = Selector('title')
-const createNewButton = Selector('a')
+const createNewButton = Selector('#petc-create-new')
 
 test('should have title', async t => {
   await t

@@ -1,0 +1,48 @@
+
+#petc-view-mode-control {
+  background-color: var(--modal-bg);
+  border-bottom-width: 10px;
+  border-radius: var(--modal-border-radius);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border: var(--modal-border);
+  border-top: none;
+  box-shadow: var(--modal-box-shadow);
+  overflow: hidden;
+  padding: 20px 20px 20px;
+  position: absolute;
+  right: 100px;
+  top: 0;
+  z-index: var(--z-index-modal);
+}
+
+#petc-view-mode-control ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#petc-view-mode-control li {
+}
+
+#petc-view-mode-control span {
+  display: none;
+}
+
+#petc-view-mode-control a {
+  color: white;
+}
+
+#petc-view-mode-control li {
+  display: inline-block;
+  padding: 10px;
+  background-color: #666;
+  border-right: 1px solid #555;
+}
+
+#petc-view-mode-control li.active {
+  background-color: #AAA;
+}
+
+#petc-view-mode-control li.active a {
+}

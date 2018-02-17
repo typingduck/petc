@@ -3,9 +3,12 @@ import React from 'react'
 import Renderer from 'react-test-renderer'
 
 import StoreView from './StoreView'
+import {ViewMode} from './NavBar'
 
 it('renders storeview', () => {
   const props = {
+    docId: '123',
+    viewMode: ViewMode.VIEW_GRAPH,
     controls: { storeview: true },
     docs: { a: 1 }
   }

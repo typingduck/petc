@@ -25,7 +25,7 @@ class HomePage extends React.Component {
   render () {
     return (
       <div className='petc-homepage'>
-        <a href='#new' onClick={this.newDocClick}>Create New</a>
+        <a id="petc-create-new" href='#new' onClick={this.newDocClick}>Create New</a>
       </div>
     )
   }
