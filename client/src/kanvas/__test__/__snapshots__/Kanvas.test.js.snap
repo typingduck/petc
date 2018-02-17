@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render 1`] = `
+<div
+  className="petc-kanvas"
+  onClick={[Function]}
+/>
+`;
+
+exports[`render with nodes 1`] = `
+<div
+  className="petc-kanvas"
+  onClick={[Function]}
+>
+  <div
+    className="node"
+    style={
+      Object {
+        "left": 1,
+        "top": 2,
+      }
+    }
+  />
+  <div
+    className="node"
+    style={
+      Object {
+        "left": 2,
+        "top": 3,
+      }
+    }
+  />
+</div>
+`;

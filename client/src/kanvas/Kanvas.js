@@ -13,7 +13,7 @@ class Kanvas extends React.Component {
   }
 
   handleClick (ev) {
-    this.props.addNode(ev.clientX - 25, ev.clientY - 25)
+    this.props.addNode(ev.pageX - 25, ev.pageY - 25)
   }
 
   render () {
