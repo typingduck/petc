@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render 1`] = `
-<div
-  className="petc-kanvas"
-  onClick={[Function]}
-/>
-`;
-
 exports[`render with nodes and edges 1`] = `
 <div
   className="petc-kanvas"
@@ -34,5 +27,15 @@ exports[`render with nodes and edges 1`] = `
       }
     }
   />
+  <div
+    id="a-b"
+  />
 </div>
+`;
+
+exports[`renders initial doc 1`] = `
+<div
+  className="petc-kanvas"
+  onClick={[Function]}
+/>
 `;

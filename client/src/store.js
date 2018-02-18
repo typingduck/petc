@@ -4,7 +4,7 @@ import { fromJS } from 'immutable'
 import {combineReducers, createStore} from 'redux'
 
 import { initialDoc } from './model/model'
-import { viewModeFromHash } from './controls/NavBar'
+import { ViewMode, viewModeFromHash } from './controls/NavBar'
 
 /**
  * Redux store for the document being edited and the UI state.
@@ -89,11 +89,14 @@ export const store = createStore(rootReducer)
  * Sets what gets passed as props to the component wrapped with connectStore.
  */
 function mapStateToProps (state, ownProps) {
+  const controlState = state.controls.toJS()
+  controlState.viewMode = viewModeFromHash(ownProps.location.hash)
+  controlState.isNodeMode = ViewMode.isNodeMode(controlState.viewMode)
+  controlState.isEdgeMode = ViewMode.isEdgeMode(controlState.viewMode)
   return {
     docId: ownProps.match.params.docId,  // set by BrowserRouter in App.
-    viewMode: viewModeFromHash(ownProps.location.hash),
     doc: state.doc.toJS(),
-    controls: state.controls.toJS()
+    controls: controlState
   }
 }
 
@@ -103,6 +106,7 @@ function mapStateToProps (state, ownProps) {
 function mapDispatchToProps (dispatch) {
   /* eslint-disable indent */
   /* eslint-disable key-spacing */
+  /* eslint-disable no-multi-spaces */
   return {
 
      docLoaded:   doc => dispatch({ type: Events.DOC_LOADED,    doc }),
@@ -112,6 +116,7 @@ function mapDispatchToProps (dispatch) {
     applyPatch: patch => dispatch({ type: Events.APPLY_PATCH, patch }),
 
   }
+  /* eslint-enable no-multi-spaces */
   /* eslint-enable key-spacing */
   /* eslint-enable indent */
 }

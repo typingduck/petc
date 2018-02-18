@@ -17,7 +17,7 @@ class HomePage extends React.Component {
   newDocClick () {
     const history = this.props.history
     createNewDoc().then(doc => {
-      history.push('/docs/' + doc.id)
+      history.push(`/docs/${doc.id}#node`)
     })
   }
 

@@ -10,7 +10,6 @@ export default function StoreView (props) {
     return (
       <pre id='petc-storeview'>
         {props.docId}<br />
-        {props.viewMode.toJSON()}<br />
         {JSON.stringify(props.controls, null, 2)}
         <hr />
         {JSON.stringify(props.doc, null, 2)}

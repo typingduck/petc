@@ -13,6 +13,7 @@ exports[`renders document page 1`] = `
         <a
           href="#view"
           id="petc-vmc-view"
+          title="view only"
         >
           <svg
             fill="currentColor"
@@ -39,36 +40,9 @@ exports[`renders document page 1`] = `
         className=""
       >
         <a
-          href="#zpan"
-          id="petc-vmc-zpan"
-        >
-          <svg
-            fill="currentColor"
-            height="1em"
-            preserveAspectRatio="xMidYMid meet"
-            style={
-              Object {
-                "color": undefined,
-                "verticalAlign": "middle",
-              }
-            }
-            viewBox="0 0 40 40"
-            width="1em"
-          >
-            <g>
-              <path
-                d="m27.5 15h9.1v10h-9.1l-5-5z m-12.5 12.5l5-5 5 5v9.1h-10v-9.1z m-2.5-12.5l5 5-5 5h-9.1v-10h9.1z m12.5-2.5l-5 5-5-5v-9.1h10v9.1z"
-              />
-            </g>
-          </svg>
-        </a>
-      </li>
-      <li
-        className=""
-      >
-        <a
           href="#node"
           id="petc-vmc-node"
+          title="edit nodes"
         >
           <svg
             fill="currentColor"
@@ -97,6 +71,7 @@ exports[`renders document page 1`] = `
         <a
           href="#edge"
           id="petc-vmc-edge"
+          title="edit edges"
         >
           <svg
             fill="currentColor"
@@ -125,6 +100,7 @@ exports[`renders document page 1`] = `
         <a
           href="/"
           id="petc-vmc-demo"
+          title="home"
         >
           <svg
             fill="currentColor"
@@ -166,10 +142,11 @@ exports[`renders document page 1`] = `
   >
     doc-id
     <br />
-    VIEW_GRAPH
-    <br />
     {
-      "storeview": true
+      "storeview": true,
+      "viewMode": "VIEW_GRAPH",
+      "isNodeMode": false,
+      "isEdgeMode": false
     }
     <hr />
     {

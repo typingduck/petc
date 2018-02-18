@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders edit edges 1`] = `
+exports[`renders edit edges mode 1`] = `
 <div
   id="petc-view-mode-control"
 >
@@ -12,6 +12,7 @@ exports[`renders edit edges 1`] = `
       <a
         href="#view"
         id="petc-vmc-view"
+        title="view only"
       >
         <svg
           fill="currentColor"
@@ -38,36 +39,9 @@ exports[`renders edit edges 1`] = `
       className=""
     >
       <a
-        href="#zpan"
-        id="petc-vmc-zpan"
-      >
-        <svg
-          fill="currentColor"
-          height="1em"
-          preserveAspectRatio="xMidYMid meet"
-          style={
-            Object {
-              "color": undefined,
-              "verticalAlign": "middle",
-            }
-          }
-          viewBox="0 0 40 40"
-          width="1em"
-        >
-          <g>
-            <path
-              d="m27.5 15h9.1v10h-9.1l-5-5z m-12.5 12.5l5-5 5 5v9.1h-10v-9.1z m-2.5-12.5l5 5-5 5h-9.1v-10h9.1z m12.5-2.5l-5 5-5-5v-9.1h10v9.1z"
-            />
-          </g>
-        </svg>
-      </a>
-    </li>
-    <li
-      className=""
-    >
-      <a
         href="#node"
         id="petc-vmc-node"
+        title="edit nodes"
       >
         <svg
           fill="currentColor"
@@ -91,11 +65,12 @@ exports[`renders edit edges 1`] = `
       </a>
     </li>
     <li
-      className=""
+      className="active"
     >
       <a
         href="#edge"
         id="petc-vmc-edge"
+        title="edit edges"
       >
         <svg
           fill="currentColor"
@@ -124,6 +99,7 @@ exports[`renders edit edges 1`] = `
       <a
         href="/"
         id="petc-vmc-demo"
+        title="home"
       >
         <svg
           fill="currentColor"
@@ -151,7 +127,7 @@ exports[`renders edit edges 1`] = `
 </div>
 `;
 
-exports[`renders edit nodes 1`] = `
+exports[`renders edit nodes mode 1`] = `
 <div
   id="petc-view-mode-control"
 >
@@ -163,6 +139,7 @@ exports[`renders edit nodes 1`] = `
       <a
         href="#view"
         id="petc-vmc-view"
+        title="view only"
       >
         <svg
           fill="currentColor"
@@ -186,39 +163,12 @@ exports[`renders edit nodes 1`] = `
       </a>
     </li>
     <li
-      className=""
-    >
-      <a
-        href="#zpan"
-        id="petc-vmc-zpan"
-      >
-        <svg
-          fill="currentColor"
-          height="1em"
-          preserveAspectRatio="xMidYMid meet"
-          style={
-            Object {
-              "color": undefined,
-              "verticalAlign": "middle",
-            }
-          }
-          viewBox="0 0 40 40"
-          width="1em"
-        >
-          <g>
-            <path
-              d="m27.5 15h9.1v10h-9.1l-5-5z m-12.5 12.5l5-5 5 5v9.1h-10v-9.1z m-2.5-12.5l5 5-5 5h-9.1v-10h9.1z m12.5-2.5l-5 5-5-5v-9.1h10v9.1z"
-            />
-          </g>
-        </svg>
-      </a>
-    </li>
-    <li
-      className=""
+      className="active"
     >
       <a
         href="#node"
         id="petc-vmc-node"
+        title="edit nodes"
       >
         <svg
           fill="currentColor"
@@ -247,6 +197,7 @@ exports[`renders edit nodes 1`] = `
       <a
         href="#edge"
         id="petc-vmc-edge"
+        title="edit edges"
       >
         <svg
           fill="currentColor"
@@ -275,6 +226,7 @@ exports[`renders edit nodes 1`] = `
       <a
         href="/"
         id="petc-vmc-demo"
+        title="home"
       >
         <svg
           fill="currentColor"
@@ -302,7 +254,7 @@ exports[`renders edit nodes 1`] = `
 </div>
 `;
 
-exports[`renders pan and zoom 1`] = `
+exports[`renders pan and zoom mode 1`] = `
 <div
   id="petc-view-mode-control"
 >
@@ -314,6 +266,7 @@ exports[`renders pan and zoom 1`] = `
       <a
         href="#view"
         id="petc-vmc-view"
+        title="view only"
       >
         <svg
           fill="currentColor"
@@ -340,36 +293,9 @@ exports[`renders pan and zoom 1`] = `
       className=""
     >
       <a
-        href="#zpan"
-        id="petc-vmc-zpan"
-      >
-        <svg
-          fill="currentColor"
-          height="1em"
-          preserveAspectRatio="xMidYMid meet"
-          style={
-            Object {
-              "color": undefined,
-              "verticalAlign": "middle",
-            }
-          }
-          viewBox="0 0 40 40"
-          width="1em"
-        >
-          <g>
-            <path
-              d="m27.5 15h9.1v10h-9.1l-5-5z m-12.5 12.5l5-5 5 5v9.1h-10v-9.1z m-2.5-12.5l5 5-5 5h-9.1v-10h9.1z m12.5-2.5l-5 5-5-5v-9.1h10v9.1z"
-            />
-          </g>
-        </svg>
-      </a>
-    </li>
-    <li
-      className=""
-    >
-      <a
         href="#node"
         id="petc-vmc-node"
+        title="edit nodes"
       >
         <svg
           fill="currentColor"
@@ -398,6 +324,7 @@ exports[`renders pan and zoom 1`] = `
       <a
         href="#edge"
         id="petc-vmc-edge"
+        title="edit edges"
       >
         <svg
           fill="currentColor"
@@ -426,6 +353,7 @@ exports[`renders pan and zoom 1`] = `
       <a
         href="/"
         id="petc-vmc-demo"
+        title="home"
       >
         <svg
           fill="currentColor"
@@ -453,18 +381,19 @@ exports[`renders pan and zoom 1`] = `
 </div>
 `;
 
-exports[`renders view 1`] = `
+exports[`renders view mode 1`] = `
 <div
   id="petc-view-mode-control"
 >
   <ul>
      
     <li
-      className=""
+      className="active"
     >
       <a
         href="#view"
         id="petc-vmc-view"
+        title="view only"
       >
         <svg
           fill="currentColor"
@@ -491,36 +420,9 @@ exports[`renders view 1`] = `
       className=""
     >
       <a
-        href="#zpan"
-        id="petc-vmc-zpan"
-      >
-        <svg
-          fill="currentColor"
-          height="1em"
-          preserveAspectRatio="xMidYMid meet"
-          style={
-            Object {
-              "color": undefined,
-              "verticalAlign": "middle",
-            }
-          }
-          viewBox="0 0 40 40"
-          width="1em"
-        >
-          <g>
-            <path
-              d="m27.5 15h9.1v10h-9.1l-5-5z m-12.5 12.5l5-5 5 5v9.1h-10v-9.1z m-2.5-12.5l5 5-5 5h-9.1v-10h9.1z m12.5-2.5l-5 5-5-5v-9.1h10v9.1z"
-            />
-          </g>
-        </svg>
-      </a>
-    </li>
-    <li
-      className=""
-    >
-      <a
         href="#node"
         id="petc-vmc-node"
+        title="edit nodes"
       >
         <svg
           fill="currentColor"
@@ -549,6 +451,7 @@ exports[`renders view 1`] = `
       <a
         href="#edge"
         id="petc-vmc-edge"
+        title="edit edges"
       >
         <svg
           fill="currentColor"
@@ -577,6 +480,7 @@ exports[`renders view 1`] = `
       <a
         href="/"
         id="petc-vmc-demo"
+        title="home"
       >
         <svg
           fill="currentColor"

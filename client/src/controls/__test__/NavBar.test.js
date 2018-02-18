@@ -4,7 +4,7 @@ import Renderer from 'react-test-renderer'
 
 import {default as NavBar, ViewMode} from '../NavBar'
 
-it('renders view', () => {
+it('renders view mode', () => {
   const props = {
     controls: { viewMode: ViewMode.VIEW_GRAPH }
   }
@@ -12,7 +12,7 @@ it('renders view', () => {
   expect(component.toJSON()).toMatchSnapshot()
 })
 
-it('renders pan and zoom', () => {
+it('renders pan and zoom mode', () => {
   const props = {
     controls: { viewMode: ViewMode.PAN_N_ZOOM }
   }
@@ -20,7 +20,7 @@ it('renders pan and zoom', () => {
   expect(component.toJSON()).toMatchSnapshot()
 })
 
-it('renders edit nodes', () => {
+it('renders edit nodes mode', () => {
   const props = {
     controls: { viewMode: ViewMode.EDIT_NODES }
   }
@@ -28,7 +28,7 @@ it('renders edit nodes', () => {
   expect(component.toJSON()).toMatchSnapshot()
 })
 
-it('renders edit edges', () => {
+it('renders edit edges mode', () => {
   const props = {
     controls: { viewMode: ViewMode.EDIT_EDGES }
   }

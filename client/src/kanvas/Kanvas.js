@@ -33,29 +33,43 @@ class Kanvas extends React.Component {
   }
 
   handleClick (ev) {
-    // if selected then deslect, otherwise add new
-    if (!this.state.selectedNode) {
+    if (this.props.controls.isNodeMode) {
       this.props.addNode(createNode(ev.pageX - 25, ev.pageY - 25))
     }
     this.setState({selectedNode: null})
   }
 
   selectNode (nodeId) {
-    // If existing selected node then join, otherwise select
-    if (this.state.selectedNode && nodeId !== this.state.selectedNode) {
-      this.props.addEdge(createEdge(this.state.selectedNode, nodeId))
-      this.setState({selectedNode: null})
-    } else {
-      this.setState({selectedNode: nodeId})
+    if (this.props.controls.isEdgeMode) {
+      // If existing selected node then connect, otherwise select
+      if (this.state.selectedNode && nodeId !== this.state.selectedNode) {
+        this.props.addEdge(createEdge(this.state.selectedNode, nodeId))
+        this.setState({selectedNode: null})
+      } else {
+        this.setState({selectedNode: nodeId})
+      }
     }
   }
 
   render () {
+    const selectedNode = this.props.controls.isEdgeMode && this.state.selectedNode
     const nodes = !this.state.jsPlmb ? null : Object.values(this.props.doc.nodes).map(node =>
-      <Node key={node.id} jsPlmb={this.state.jsPlmb} node={node} selectNode={this.selectNode} selected={node.id === this.state.selectedNode} updateNode={this.props.updateNode} />
+      <Node
+        key={node.id}
+        node={node}
+        {...this.props}
+        jsPlmb={this.state.jsPlmb}
+        selectNode={this.selectNode}
+        selected={node.id === selectedNode}
+        updateNode={this.props.updateNode}
+      />
     )
     const edges = !this.state.jsPlmb ? null : Object.values(this.props.doc.edges).map(edge =>
-      <Edge key={edge.id} jsPlmb={this.state.jsPlmb} source={edge.source} target={edge.target} />
+      <Edge
+        key={edge.id}
+        edge={edge}
+        jsPlmb={this.state.jsPlmb}
+      />
     )
 
     return (
@@ -87,6 +101,7 @@ class Node extends React.Component {
       containment: true
     }
     this.props.jsPlmb.draggable(this.nodeId, dragOptions)
+    this.props.jsPlmb.setDraggable(this.nodeId, this.props.controls.isNodeMode)
     this._isMounted = true
   }
 
@@ -112,6 +127,7 @@ class Node extends React.Component {
       // This only exists to force redraw when another client moves a node. Can
       // possibly be optimized to prevent so many calls.
       this.props.jsPlmb.repaint(this.nodeId, {left: x, top: y})
+      this.props.jsPlmb.setDraggable(this.nodeId, this.props.controls.isNodeMode)
     }
     const style = {left: x, top: y}
     const className = this.props.selected ? 'petc-node petc-node-selected' : 'petc-node'
@@ -128,8 +144,7 @@ class Node extends React.Component {
 
 class Edge extends React.Component {
   componentDidMount () {
-    const edge = {source: this.props.source, target: this.props.target}
-    const connection = this.props.jsPlmb.connect(edge)
+    const connection = this.props.jsPlmb.connect(this.props.edge)
     this.setState({connection: connection})
   }
 
@@ -138,7 +153,8 @@ class Edge extends React.Component {
   }
 
   render () {
-    return null
+    // could return null, but return something helps with testing
+    return <div id={this.props.edge.id} />
   }
 }
 

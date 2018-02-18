@@ -8,8 +8,10 @@ import {ViewMode} from '../NavBar'
 it('renders storeview', () => {
   const props = {
     docId: '123',
-    viewMode: ViewMode.VIEW_GRAPH,
-    controls: { storeview: true },
+    controls: {
+      storeview: true,
+      viewMode: ViewMode.VIEW_GRAPH
+    },
     docs: { a: 1 }
   }
   const component = Renderer.create(<StoreView {...props} />)
