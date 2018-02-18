@@ -173,7 +173,8 @@ exports[`renders document page 1`] = `
     }
     <hr />
     {
-      "nodes": []
+      "nodes": {},
+      "edges": {}
     }
   </pre>
 </div>

@@ -7,13 +7,15 @@ exports[`render 1`] = `
 />
 `;
 
-exports[`render with nodes 1`] = `
+exports[`render with nodes and edges 1`] = `
 <div
   className="petc-kanvas"
   onClick={[Function]}
 >
   <div
-    className="node"
+    className="petc-node"
+    id="a"
+    onClick={[Function]}
     style={
       Object {
         "left": 1,
@@ -22,7 +24,9 @@ exports[`render with nodes 1`] = `
     }
   />
   <div
-    className="node"
+    className="petc-node"
+    id="b"
+    onClick={[Function]}
     style={
       Object {
         "left": 2,

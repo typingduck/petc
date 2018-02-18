@@ -61,5 +61,11 @@ typings/
 .*sw?
 
 # database data
-
 /db/data
+
+# random
+*_js
+*_css
+*_html
+favicon.xcf
+*.bkup

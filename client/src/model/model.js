@@ -1,11 +1,24 @@
 import axios from 'axios'
-import config from '../conf/config'
 import io from 'socket.io-client'
+import uuid from 'uuid/v4'
+
+import config from '../conf/config'
 
 export function initialDoc () {
   return {
-    nodes: []  // list of {id, x, y}
+    nodes: {},  // map of id -> {id, x, y}
+    edges: {}   // map of id -> {id, source, target}
   }
+}
+
+export function createNode (x, y) {
+  const id = uuid().substring(0, 8)
+  return {id, x, y}
+}
+
+export function createEdge (source, target) {
+  const id = source + '-' + target
+  return {id, source, target}
 }
 
 export async function createNewDoc () {
@@ -29,9 +42,10 @@ export async function connectSocket (docId, cb) {
   socket.on('doc-patch', cb)
 
   return {
-    addNode (node) {
-      socket.emit('doc-patch', { 'op': 'add', 'path': '/nodes/-', 'value': node })
-    }
+    addNode: node =>
+      socket.emit('doc-patch', { 'op': 'add', 'path': `/nodes/${node.id}`, 'value': node }),
+    addEdge: edge =>
+      socket.emit('doc-patch', { 'op': 'add', 'path': `/edges/${edge.id}`, 'value': edge })
   }
 }
 

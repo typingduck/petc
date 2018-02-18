@@ -6,8 +6,8 @@ import DocumentPage from '../DocumentPage'
 import {ViewMode} from '../controls/NavBar'
 
 jest.mock('../model/model', () => ({
-  initialDoc: () => ({ nodes: [] }),
-  loadDoc: () => Promise.resolve({ nodes: [] }),
+  initialDoc: () => ({ nodes: {}, edges: {} }),
+  loadDoc: () => Promise.resolve({ nodes: {}, edges: {} }),
   connectSocket: () => Promise.resolve()
 }))
 
@@ -16,7 +16,7 @@ it('matches snapshot', () => {
     docId: '123',
     viewMode: ViewMode.VIEW_GRAPH,
     controls: { storeview: true },
-    doc: { nodes: [] },
+    doc: { nodes: {}, edges: {} },
     docLoaded: () => {}
   }
   const renderer = new ShallowRenderer()

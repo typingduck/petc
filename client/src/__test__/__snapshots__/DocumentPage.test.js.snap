@@ -10,7 +10,8 @@ exports[`matches snapshot 1`] = `
     }
     doc={
       Object {
-        "nodes": Array [],
+        "edges": Object {},
+        "nodes": Object {},
       }
     }
     docId="123"
@@ -24,6 +25,7 @@ exports[`matches snapshot 1`] = `
       pannus et circulos
     </h1>
     <Kanvas
+      addEdge={[Function]}
       addNode={[Function]}
       controls={
         Object {
@@ -32,7 +34,8 @@ exports[`matches snapshot 1`] = `
       }
       doc={
         Object {
-          "nodes": Array [],
+          "edges": Object {},
+          "nodes": Object {},
         }
       }
       docId="123"
@@ -48,7 +51,8 @@ exports[`matches snapshot 1`] = `
     }
     doc={
       Object {
-        "nodes": Array [],
+        "edges": Object {},
+        "nodes": Object {},
       }
     }
     docId="123"

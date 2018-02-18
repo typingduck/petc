@@ -5,8 +5,8 @@ import Renderer from 'react-test-renderer'
 import App from '../App'
 
 jest.mock('../model/model', () => ({
-  initialDoc: () => ({ nodes: [] }),
-  loadDoc: () => Promise.resolve({ nodes: [] }),
+  initialDoc: () => ({ nodes: {}, edges: {} }),
+  loadDoc: () => Promise.resolve({ nodes: {}, edges: {} }),
   connectSocket: () => Promise.resolve()
 }))
 
