@@ -40,6 +40,7 @@ exports[`matches snapshot 1`] = `
       }
       docId="123"
       docLoaded={[Function]}
+      updateNode={[Function]}
       viewMode={"VIEW_GRAPH"}
     />
   </div>

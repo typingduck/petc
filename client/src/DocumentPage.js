@@ -15,6 +15,7 @@ export default class DocumentPage extends React.Component {
     this.socket = null
 
     this.addNode = this.addNode.bind(this)
+    this.updateNode = this.updateNode.bind(this)
     this.addEdge = this.addEdge.bind(this)
     this.setDoc = this.setDoc.bind(this)
     this.receiveUpdate = this.receiveUpdate.bind(this)
@@ -56,6 +57,11 @@ export default class DocumentPage extends React.Component {
     this.socket.addNode(node)
   }
 
+  updateNode (node) {
+    this.props.updateNode(node)
+    this.socket.updateNode(node)
+  }
+
   addEdge (edge) {
     this.props.addEdge(edge)
     this.socket.addEdge(edge)
@@ -66,7 +72,7 @@ export default class DocumentPage extends React.Component {
       <NavBar {...this.props} />
       <div className='petc-pageview'>
         <h1>pannus et circulos</h1>
-        <Kanvas {...this.props} addNode={this.addNode} addEdge={this.addEdge} />
+        <Kanvas {...this.props} addNode={this.addNode} addEdge={this.addEdge} updateNode={this.updateNode} />
       </div>
       <StoreView {...this.props} />
     </div>)

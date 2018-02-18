@@ -8,7 +8,8 @@ import Kanvas from '../Kanvas'
 jest.mock('jsplumb', () => ({
   jsPlumb: {
     getInstance: () => ({
-      connect: () => null
+      connect: () => null,
+      draggable: () => null
     })
   }
 }))

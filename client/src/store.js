@@ -28,6 +28,7 @@ function initialControls () {
 const Events = {
   DOC_LOADED:  Symbol('DOC_LOADED'),
   ADD_NODE:    Symbol('ADD_NODE'),
+  UPDATE_NODE: Symbol('UPDATE_NODE'),
   ADD_EDGE:    Symbol('ADD_EDGE'),
   APPLY_PATCH: Symbol('APPLY_PATCH'),
 }
@@ -44,6 +45,7 @@ function docReducer (state, action) {
     case Events.DOC_LOADED:
       return fromJS(action.doc)
     case Events.ADD_NODE:
+    case Events.UPDATE_NODE:
       return state.setIn(['nodes', action.node.id], action.node)
     case Events.ADD_EDGE:
       return state.setIn(['edges', action.edge.id], action.edge)
@@ -103,9 +105,10 @@ function mapDispatchToProps (dispatch) {
   /* eslint-disable key-spacing */
   return {
 
-     docLoaded:   doc => dispatch({ type: Events.DOC_LOADED, doc }),
-       addNode:  node => dispatch({ type: Events.ADD_NODE, node }),
-       addEdge:  edge => dispatch({ type: Events.ADD_EDGE, edge }),
+     docLoaded:   doc => dispatch({ type: Events.DOC_LOADED,    doc }),
+       addNode:  node => dispatch({ type: Events.ADD_NODE,     node }),
+    updateNode:  node => dispatch({ type: Events.UPDATE_NODE,  node }),
+       addEdge:  edge => dispatch({ type: Events.ADD_EDGE,     edge }),
     applyPatch: patch => dispatch({ type: Events.APPLY_PATCH, patch }),
 
   }
