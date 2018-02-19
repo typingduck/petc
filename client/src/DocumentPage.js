@@ -3,6 +3,7 @@ import React from 'react'
 import Kanvas from './kanvas/Kanvas'
 import NavBar from './controls/NavBar'
 import StoreView from './controls/StoreView'
+import Trashcan from './controls/Trashcan'
 import {loadDoc, connectSocket} from './model/model'
 
 /**
@@ -16,6 +17,7 @@ export default class DocumentPage extends React.Component {
 
     this.addNode = this.addNode.bind(this)
     this.updateNode = this.updateNode.bind(this)
+    this.removeNode = this.removeNode.bind(this)
     this.addEdge = this.addEdge.bind(this)
     this.setDoc = this.setDoc.bind(this)
     this.receiveUpdate = this.receiveUpdate.bind(this)
@@ -62,6 +64,11 @@ export default class DocumentPage extends React.Component {
     this.socket.updateNode(node)
   }
 
+  removeNode (node) {
+    this.props.removeNode(node)
+    this.socket.removeNode(node)
+  }
+
   addEdge (edge) {
     this.props.addEdge(edge)
     this.socket.addEdge(edge)
@@ -72,7 +79,14 @@ export default class DocumentPage extends React.Component {
       <NavBar {...this.props} />
       <div className='petc-pageview'>
         <h1>pannus et circulos</h1>
-        <Kanvas {...this.props} addNode={this.addNode} addEdge={this.addEdge} updateNode={this.updateNode} />
+        <Kanvas
+          {...this.props}
+          addNode={this.addNode}
+          addEdge={this.addEdge}
+          updateNode={this.updateNode}
+          removeNode={this.removeNode}
+        />
+        <Trashcan {...this.props} />
       </div>
       <StoreView {...this.props} />
     </div>)

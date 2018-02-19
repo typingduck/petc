@@ -3,6 +3,7 @@ import {jsPlumb} from 'jsplumb'
 
 import './Kanvas.css'
 import {createNode, createEdge} from '../model/model'
+import {isInTrashCan} from '../controls/Trashcan'
 
 const JSPLUMP_DEFAULTS = {
   Container: 'petc-kanvas',
@@ -105,14 +106,29 @@ class Node extends React.Component {
     this._isMounted = true
   }
 
+  componentWillUnmount () {
+    this.props.jsPlmb.removeAllEndpoints(this.nodeId)
+  }
+
   onDragStart () { }
 
-  onDrag () { }
+  onDrag (ev) {
+    this.props.draggingNode({
+      id: this.nodeId,
+      x: ev.e.pageX,
+      y: ev.e.pageY
+    })
+  }
 
   onDragStop (ev) {
+    this.props.draggingNode(null)
     const [x, y] = ev.finalPos
     const newNode = Object.assign({}, this.props.node, {x, y})
-    this.props.updateNode(newNode)
+    if (isInTrashCan(newNode)) {
+      this.props.removeNode(newNode)
+    } else {
+      this.props.updateNode(newNode)
+    }
   }
 
   handleClick (ev) {
@@ -123,7 +139,8 @@ class Node extends React.Component {
   render () {
     const x = this.props.node.x
     const y = this.props.node.y
-    if (this._isMounted) {  // need to render the element once before jsplumb can see it
+    if (this._isMounted &&  // need to render the element once before jsplumb can see it
+        !this.props.controls.dragNode) {
       // This only exists to force redraw when another client moves a node. Can
       // possibly be optimized to prevent so many calls.
       this.props.jsPlmb.repaint(this.nodeId, {left: x, top: y})
@@ -149,7 +166,7 @@ class Edge extends React.Component {
   }
 
   componentWillUnmount () {
-    this.props.jsPlmb.detach(this.state.connection)
+    // this.props.jsPlmb.detach(this.state.connection)
   }
 
   render () {

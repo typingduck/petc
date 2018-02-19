@@ -10,6 +10,17 @@ jest.mock('../model/model', () => ({
   connectSocket: () => Promise.resolve()
 }))
 
+jest.mock('react-dom', () => ({
+  findDOMNode: () => ({
+    getBoundingClientRect: () => ({
+      left: 10,
+      right: 20,
+      top: 100,
+      bottom: 110
+    })
+  })
+}))
+
 it('renders document page', () => {
   window.history.replaceState(null, null, '/docs/doc-id')
   const component = Renderer.create(<App />)

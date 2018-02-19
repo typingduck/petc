@@ -29,8 +29,11 @@ const Events = {
   DOC_LOADED:  Symbol('DOC_LOADED'),
   ADD_NODE:    Symbol('ADD_NODE'),
   UPDATE_NODE: Symbol('UPDATE_NODE'),
+  DELETE_NODE: Symbol('DELETE_NODE'),
   ADD_EDGE:    Symbol('ADD_EDGE'),
   APPLY_PATCH: Symbol('APPLY_PATCH'),
+
+  DRAGGING_NODE: Symbol('DRAGGING_NODE'),
 }
 /* eslint-enable key-spacing */
 
@@ -47,6 +50,8 @@ function docReducer (state, action) {
     case Events.ADD_NODE:
     case Events.UPDATE_NODE:
       return state.setIn(['nodes', action.node.id], action.node)
+    case Events.DELETE_NODE:
+      return state.removeIn(['nodes', action.node.id])
     case Events.ADD_EDGE:
       return state.setIn(['edges', action.edge.id], action.edge)
     case Events.APPLY_PATCH: {
@@ -67,6 +72,8 @@ function controlsReducer (state, action) {
     return fromJS(initialControls())
   }
   switch (action.type) {
+    case Events.DRAGGING_NODE:
+      return state.set('dragNode', action.node)
     default:
       return state
   }
@@ -112,8 +119,11 @@ function mapDispatchToProps (dispatch) {
      docLoaded:   doc => dispatch({ type: Events.DOC_LOADED,    doc }),
        addNode:  node => dispatch({ type: Events.ADD_NODE,     node }),
     updateNode:  node => dispatch({ type: Events.UPDATE_NODE,  node }),
+    removeNode:  node => dispatch({ type: Events.DELETE_NODE,  node }),
        addEdge:  edge => dispatch({ type: Events.ADD_EDGE,     edge }),
     applyPatch: patch => dispatch({ type: Events.APPLY_PATCH, patch }),
+
+    draggingNode: node => dispatch({ type: Events.DRAGGING_NODE, node }),
 
   }
   /* eslint-enable no-multi-spaces */

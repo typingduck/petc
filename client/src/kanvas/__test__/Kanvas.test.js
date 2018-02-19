@@ -16,10 +16,16 @@ jest.mock('jsplumb', () => (
   { jsPlumb: { getInstance: () => mockJsPlumb } }
 ))
 
+let mockIsInTrashCan = false
+
+jest.mock('../../controls/Trashcan', () => (
+  { isInTrashCan: jest.fn(() => mockIsInTrashCan) }
+))
+
 jest.mock('uuid/v4', () => () => 'u-u-i-d')
 
 beforeEach(() => {
-  jest.resetAllMocks()
+  jest.clearAllMocks()
 })
 
 it('renders initial doc', () => {
@@ -203,4 +209,44 @@ it('should emit node position after dragging', () => {
 
   // should emit node position at end
   expect(props.updateNode).toHaveBeenCalledWith({ id: 'node', x: 1000, y: 2000 })
+})
+
+it('should delete node if in trashcan', () => {
+  const props = {
+    doc: {
+      nodes: {
+        'node': { id: 'node', x: 10, y: 20 }
+      },
+      edges: {}
+    },
+    controls: {
+      isNodeMode: false,
+      isEdgeMode: true
+    },
+    draggingNode: jest.fn(),
+    updateNode: jest.fn(),
+    removeNode: jest.fn()
+  }
+  // given kanvas with a node
+  const component = Renderer.create(<Kanvas {...props} />)
+  let tree = component.toJSON()
+  let nodeDiv = tree.children[0]
+  expect(nodeDiv.props.id).toEqual('node')
+
+  // given jsPlumb dragging setup
+  const draggable = mockJsPlumb.draggable.mock.calls[0]
+  expect(draggable[0]).toEqual('node')
+  const onDrag = draggable[1].drag
+  const onDragStart = draggable[1].start
+  const onDragStop = draggable[1].stop
+
+  // when dragging node
+  onDragStart()
+  onDrag({ e: { pageX: 100, pageY: 200 } })
+
+  mockIsInTrashCan = true
+  onDragStop({ finalPos: [1000, 2000] })
+
+  // should emit delete node
+  expect(props.removeNode).toHaveBeenCalledWith({ id: 'node', x: 1000, y: 2000 })
 })

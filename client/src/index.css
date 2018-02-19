@@ -7,6 +7,7 @@
   --z-index-base:     0;
   --z-index-kanvas: 100;
   --z-index-modal:  200;
+  --z-index-can:     50;
   --z-index-h1:      50;
 }
 

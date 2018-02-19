@@ -46,6 +46,8 @@ export async function connectSocket (docId, cb) {
       socket.emit('doc-patch', { 'op': 'add', 'path': `/nodes/${node.id}`, 'value': node }),
     updateNode: node =>
       socket.emit('doc-patch', { 'op': 'replace', 'path': `/nodes/${node.id}`, 'value': node }),
+    removeNode: node =>
+      socket.emit('doc-patch', { 'op': 'remove', 'path': `/nodes/${node.id}` }),
     addEdge: edge =>
       socket.emit('doc-patch', { 'op': 'add', 'path': `/edges/${edge.id}`, 'value': edge })
   }

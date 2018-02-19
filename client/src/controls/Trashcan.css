@@ -1,0 +1,24 @@
+
+#petc-trashcan {
+  bottom: 10px;
+  color: rgba(0,0,0,0.1);
+  font-size: 96px;
+  left: 50%;
+  margin-left: -50px; 
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  z-index: var(--z-index-can)
+}
+
+#petc-trashcan.active {
+  color: black;
+}
+
+#petc-trashcan.delete {
+  color: red;
+}
+
+#petc-trashcan.hidden {
+  color: rgba(0, 0, 0, 0.0);
+}
