@@ -133,7 +133,7 @@ exports[`renders document page 1`] = `
       pannus et circulos
     </h1>
     <div
-      className="petc-kanvas"
+      id="petc-kanvas"
       onClick={[Function]}
     />
     <div
@@ -175,7 +175,11 @@ exports[`renders document page 1`] = `
     <hr />
     {
       "nodes": {},
-      "edges": {}
+      "edges": {},
+      "style": {
+        "nodes": {},
+        "edges": {}
+      }
     }
   </pre>
 </div>

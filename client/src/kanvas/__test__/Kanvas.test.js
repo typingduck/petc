@@ -5,6 +5,8 @@ import Renderer from 'react-test-renderer'
 import {initialDoc} from '../../model/model'
 import Kanvas from '../Kanvas'
 
+Math.random = () => 0.1
+
 const mockJsPlumb = {
   connect: jest.fn(),
   draggable: jest.fn(),
@@ -80,7 +82,7 @@ it('should create node on click', () => {
   expect(props.addNode).toHaveBeenCalledWith({ id: 'u-u-i-d', x: 100, y: 200 })
 })
 
-it('should select node in edit mode', () => {
+it('should select node in edge mode', () => {
   const props = {
     doc: {
       nodes: {
@@ -97,7 +99,7 @@ it('should select node in edit mode', () => {
   // given kanvas with a node
   const component = Renderer.create(<Kanvas {...props} />)
   let tree = component.toJSON()
-  let nodeDiv = tree.children[0]
+  let nodeDiv = tree.children[0].children[0]
   expect(nodeDiv.props.id).toEqual('node')
   expect(nodeDiv.props.className).toEqual('petc-node')
 
@@ -106,7 +108,7 @@ it('should select node in edit mode', () => {
 
   // should mark node as selected
   tree = component.toJSON()
-  nodeDiv = tree.children[0]
+  nodeDiv = tree.children[0].children[0]
   expect(nodeDiv.props.className).toEqual('petc-node petc-node-selected')
 
   // when clicking on kanvas
@@ -116,7 +118,7 @@ it('should select node in edit mode', () => {
 
   // should deselect node
   tree = component.toJSON()
-  nodeDiv = tree.children[0]
+  nodeDiv = tree.children[0].children[0]
   expect(nodeDiv.props.className).toEqual('petc-node')
 })
 
@@ -138,11 +140,11 @@ it('should disable dragging in edge view mode', () => {
   const component = Renderer.create(<Kanvas {...props} />)
   let tree = component.toJSON()
   let nodeDiv = tree.children[0]
-  expect(nodeDiv.props.id).toEqual('node')
+  expect(nodeDiv.props.id).toEqual('node-wrapper')
 
   // then dragging should be disabled
   const setDraggable = mockJsPlumb.setDraggable.mock.calls[0]
-  expect(setDraggable).toEqual([ 'node', false ])
+  expect(setDraggable).toEqual([ 'node-wrapper', false ])
 })
 
 it('should enable dragging in node view mode', () => {
@@ -163,11 +165,11 @@ it('should enable dragging in node view mode', () => {
   const component = Renderer.create(<Kanvas {...props} />)
   let tree = component.toJSON()
   let nodeDiv = tree.children[0]
-  expect(nodeDiv.props.id).toEqual('node')
+  expect(nodeDiv.props.id).toEqual('node-wrapper')
 
   // then dragging should be disabled
   const setDraggable = mockJsPlumb.setDraggable.mock.calls[0]
-  expect(setDraggable).toEqual([ 'node', true ])
+  expect(setDraggable).toEqual([ 'node-wrapper', true ])
 })
 
 it('should emit node position after dragging', () => {
@@ -189,11 +191,11 @@ it('should emit node position after dragging', () => {
   const component = Renderer.create(<Kanvas {...props} />)
   let tree = component.toJSON()
   let nodeDiv = tree.children[0]
-  expect(nodeDiv.props.id).toEqual('node')
+  expect(nodeDiv.props.id).toEqual('node-wrapper')
 
   // given jsPlumb dragging setup
   const draggable = mockJsPlumb.draggable.mock.calls[0]
-  expect(draggable[0]).toEqual('node')
+  expect(draggable[0]).toEqual('node-wrapper')
   const onDrag = draggable[1].drag
   const onDragStart = draggable[1].start
   const onDragStop = draggable[1].stop
@@ -231,11 +233,11 @@ it('should delete node if in trashcan', () => {
   const component = Renderer.create(<Kanvas {...props} />)
   let tree = component.toJSON()
   let nodeDiv = tree.children[0]
-  expect(nodeDiv.props.id).toEqual('node')
+  expect(nodeDiv.props.id).toEqual('node-wrapper')
 
   // given jsPlumb dragging setup
   const draggable = mockJsPlumb.draggable.mock.calls[0]
-  expect(draggable[0]).toEqual('node')
+  expect(draggable[0]).toEqual('node-wrapper')
   const onDrag = draggable[1].drag
   const onDragStart = draggable[1].start
   const onDragStop = draggable[1].stop
@@ -249,4 +251,22 @@ it('should delete node if in trashcan', () => {
 
   // should emit delete node
   expect(props.removeNode).toHaveBeenCalledWith({ id: 'node', x: 1000, y: 2000 })
+})
+
+it('should show node label', () => {
+  const props = {
+    doc: {
+      nodes: {
+        'node': { id: 'node', x: 10, y: 20, label: 'a label' }
+      },
+      edges: {}
+    },
+    controls: {
+      isNodeMode: false,
+      isEdgeMode: true
+    }
+  }
+  // given kanvas with a node
+  const component = Renderer.create(<Kanvas {...props} />)
+  expect(component.toJSON()).toMatchSnapshot()
 })

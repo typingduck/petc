@@ -6,8 +6,12 @@ import config from '../conf/config'
 
 export function initialDoc () {
   return {
-    nodes: {},  // map of id -> {id, x, y}
-    edges: {}   // map of id -> {id, source, target}
+    nodes: {},  // map of id -> {id, x, y } optionally { label, className }
+    edges: {},  // map of id -> {id, source, target} optionally { label, className }
+    style: {
+      nodes: {},
+      edges: {}
+    }
   }
 }
 

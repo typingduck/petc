@@ -8,11 +8,11 @@ import {isInTrashCan} from '../controls/Trashcan'
 const JSPLUMP_DEFAULTS = {
   Container: 'petc-kanvas',
   PaintStyle: {
-    strokeWidth: 6,
-    stroke: 'grey'
+    strokeWidth: 2,
+    stroke: 'rgba(100, 100, 100, 0.5)'
   },
   Connector: [ 'Straight' ],
-  Endpoint: [ 'Dot', { radius: 3 } ],
+  Endpoint: [ 'Dot', { radius: 1 } ],
   EndpointStyle: { fill: 'grey' },
   Anchor: [ 'Continuous', { shape: 'Circle' } ]
 }
@@ -30,7 +30,8 @@ class Kanvas extends React.Component {
   }
 
   componentDidMount () {
-    this.setState({jsPlmb: jsPlumb.getInstance(JSPLUMP_DEFAULTS)})
+    window.j = jsPlumb.getInstance(JSPLUMP_DEFAULTS)
+    this.setState({jsPlmb: window.j})
   }
 
   handleClick (ev) {
@@ -54,6 +55,9 @@ class Kanvas extends React.Component {
 
   render () {
     const selectedNode = this.props.controls.isEdgeMode && this.state.selectedNode
+    if (!this.props.doc.style) {
+      this.props.doc.style = { nodes: {}, edges: {} }
+    }
     const nodes = !this.state.jsPlmb ? null : Object.values(this.props.doc.nodes).map(node =>
       <Node
         key={node.id}
@@ -69,12 +73,13 @@ class Kanvas extends React.Component {
       <Edge
         key={edge.id}
         edge={edge}
+        {...this.props}
         jsPlmb={this.state.jsPlmb}
       />
     )
 
     return (
-      <div className='petc-kanvas' onClick={this.handleClick}>
+      <div id='petc-kanvas' onClick={this.handleClick}>
         {nodes}
         {edges}
       </div>
@@ -85,8 +90,9 @@ class Kanvas extends React.Component {
 class Node extends React.Component {
   constructor (props) {
     super(props)
-    this.nodeId = this.props.node.id
+    this._nodeId = this.props.node.id
     this._isMounted = false
+    this._textRotation = Math.round(10 * (Math.random() - 0.5))
 
     this.handleClick = this.handleClick.bind(this)
     this.onDragStart = this.onDragStart.bind(this)
@@ -100,21 +106,22 @@ class Node extends React.Component {
       'drag': this.onDrag,
       'stop': this.onDragStop,
       containment: true
+      // grid:[50,50]
     }
-    this.props.jsPlmb.draggable(this.nodeId, dragOptions)
-    this.props.jsPlmb.setDraggable(this.nodeId, this.props.controls.isNodeMode)
+    this.props.jsPlmb.draggable(nw(this._nodeId), dragOptions)
+    this.props.jsPlmb.setDraggable(nw(this._nodeId), this.props.controls.isNodeMode)
     this._isMounted = true
   }
 
   componentWillUnmount () {
-    this.props.jsPlmb.removeAllEndpoints(this.nodeId)
+    this.props.jsPlmb.removeAllEndpoints(this._nodeId)
   }
 
   onDragStart () { }
 
   onDrag (ev) {
     this.props.draggingNode({
-      id: this.nodeId,
+      id: this._nodeId,
       x: ev.e.pageX,
       y: ev.e.pageY
     })
@@ -133,7 +140,7 @@ class Node extends React.Component {
 
   handleClick (ev) {
     ev.stopPropagation()
-    this.props.selectNode(this.nodeId)
+    this.props.selectNode(this._nodeId)
   }
 
   render () {
@@ -143,25 +150,53 @@ class Node extends React.Component {
         !this.props.controls.dragNode) {
       // This only exists to force redraw when another client moves a node. Can
       // possibly be optimized to prevent so many calls.
-      this.props.jsPlmb.repaint(this.nodeId, {left: x, top: y})
-      this.props.jsPlmb.setDraggable(this.nodeId, this.props.controls.isNodeMode)
+      this.props.jsPlmb.repaint(nw(this._nodeId), {left: x, top: y})
+      this.props.jsPlmb.setDraggable(nw(this._nodeId), this.props.controls.isNodeMode)
     }
-    const style = {left: x, top: y}
-    const className = this.props.selected ? 'petc-node petc-node-selected' : 'petc-node'
+    let className = 'petc-node'
+    if (this.props.selected) {
+      className += ' petc-node-selected'
+    }
+    if (this.props.node.className) {
+      className += ' ' + this.props.node.className
+    }
+    const nodeStyle = this.props.doc.style.nodes[this.props.node.className]
+    const textStyle = { WebkitTransform: `rotate(${this._textRotation}deg)` }
     return (
       <div
-        id={this.nodeId}
-        className={className}
-        style={style}
-        onClick={this.handleClick}
-      />
+        id={nw(this._nodeId)}
+        style={{ position: 'absolute', left: x, top: y }}
+      >
+        <div
+          id={this._nodeId}
+          onClick={this.handleClick}
+          className={className}
+          style={nodeStyle}
+        />
+        <div className='petc-node-label' style={textStyle}>{this.props.node.label}</div>
+      </div>
     )
   }
 }
 
 class Edge extends React.Component {
   componentDidMount () {
-    const connection = this.props.jsPlmb.connect(this.props.edge)
+    const edge = this.props.edge
+    const edgeInfo = {
+      source: edge.source,
+      target: edge.target,
+      overlays: []
+    }
+    const optStyle = this.props.doc.style.edges[edge.className]
+    if (optStyle) {
+      Object.assign(edgeInfo, optStyle)
+    }
+    if (edge.label) {
+      edgeInfo.overlays.push(
+        [ 'Label', { label: edge.label, cssClass: 'petc-edge-label' } ]
+      )
+    }
+    const connection = this.props.jsPlmb.connect(edgeInfo)
     this.setState({connection: connection})
   }
 
@@ -173,6 +208,13 @@ class Edge extends React.Component {
     // could return null, but return something helps with testing
     return <div id={this.props.edge.id} />
   }
+}
+
+/**
+ * Id of wrappper containing the node and its label.
+ */
+function nw (nodeId) {
+  return nodeId + '-wrapper'
 }
 
 export default Kanvas

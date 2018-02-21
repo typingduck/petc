@@ -2,31 +2,59 @@
 
 exports[`render with nodes and edges 1`] = `
 <div
-  className="petc-kanvas"
+  id="petc-kanvas"
   onClick={[Function]}
 >
   <div
-    className="petc-node"
-    id="a"
-    onClick={[Function]}
+    id="a-wrapper"
     style={
       Object {
         "left": 1,
+        "position": "absolute",
         "top": 2,
       }
     }
-  />
+  >
+    <div
+      className="petc-node"
+      id="a"
+      onClick={[Function]}
+      style={undefined}
+    />
+    <div
+      className="petc-node-label"
+      style={
+        Object {
+          "WebkitTransform": "rotate(-4deg)",
+        }
+      }
+    />
+  </div>
   <div
-    className="petc-node"
-    id="b"
-    onClick={[Function]}
+    id="b-wrapper"
     style={
       Object {
         "left": 2,
+        "position": "absolute",
         "top": 3,
       }
     }
-  />
+  >
+    <div
+      className="petc-node"
+      id="b"
+      onClick={[Function]}
+      style={undefined}
+    />
+    <div
+      className="petc-node-label"
+      style={
+        Object {
+          "WebkitTransform": "rotate(-4deg)",
+        }
+      }
+    />
+  </div>
   <div
     id="a-b"
   />
@@ -35,7 +63,42 @@ exports[`render with nodes and edges 1`] = `
 
 exports[`renders initial doc 1`] = `
 <div
-  className="petc-kanvas"
+  id="petc-kanvas"
   onClick={[Function]}
 />
+`;
+
+exports[`should show node label 1`] = `
+<div
+  id="petc-kanvas"
+  onClick={[Function]}
+>
+  <div
+    id="node-wrapper"
+    style={
+      Object {
+        "left": 10,
+        "position": "absolute",
+        "top": 20,
+      }
+    }
+  >
+    <div
+      className="petc-node"
+      id="node"
+      onClick={[Function]}
+      style={undefined}
+    />
+    <div
+      className="petc-node-label"
+      style={
+        Object {
+          "WebkitTransform": "rotate(-4deg)",
+        }
+      }
+    >
+      a label
+    </div>
+  </div>
+</div>
 `;
