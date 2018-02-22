@@ -36,7 +36,8 @@ class Kanvas extends React.Component {
 
   handleClick (ev) {
     if (this.props.controls.isNodeMode) {
-      this.props.addNode(createNode(ev.pageX - 25, ev.pageY - 25))
+      this.props.addNode(createNode(ev.pageX - 25, ev.pageY - 25,
+        this.props.controls.selectedNodeClass))
     }
     this.setState({selectedNode: null})
   }

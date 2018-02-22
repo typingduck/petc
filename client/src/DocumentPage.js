@@ -2,6 +2,7 @@ import React from 'react'
 
 import Kanvas from './kanvas/Kanvas'
 import NavBar from './controls/NavBar'
+import NodeClassSelector from './controls/NodeClassSelector'
 import StoreView from './controls/StoreView'
 import Trashcan from './controls/Trashcan'
 import {loadDoc, connectSocket} from './model/model'
@@ -87,6 +88,13 @@ export default class DocumentPage extends React.Component {
           removeNode={this.removeNode}
         />
         <Trashcan {...this.props} />
+        <NodeClassSelector
+          {...this.props}
+          addNode={this.addNode}
+          addEdge={this.addEdge}
+          updateNode={this.updateNode}
+          removeNode={this.removeNode}
+        />
       </div>
       <StoreView {...this.props} />
     </div>)

@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shows custom node styles 1`] = `
+<div
+  id="petc-node-select-control"
+>
+  <ul>
+    <li
+      className={null}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <div
+        className="petc-node default react-draggable"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "touchAction": "none",
+            "transform": "translate(0px,0px)",
+          }
+        }
+        transform={null}
+      />
+      <div>
+        default
+      </div>
+    </li>
+    <li
+      className={null}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <div
+        className="petc-node class-red react-draggable"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "color": "red",
+            "touchAction": "none",
+            "transform": "translate(0px,0px)",
+          }
+        }
+        transform={null}
+      />
+      <div>
+        class-red
+      </div>
+    </li>
+    <li
+      className={null}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <div
+        className="petc-node class-blue react-draggable"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "color": "blue",
+            "touchAction": "none",
+            "transform": "translate(0px,0px)",
+          }
+        }
+        transform={null}
+      />
+      <div>
+        class-blue
+      </div>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`visible when node view mode 1`] = `
+<div
+  id="petc-node-select-control"
+>
+  <ul>
+    <li
+      className={null}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <div
+        className="petc-node default react-draggable"
+        onMouseDown={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchStart={[Function]}
+        style={
+          Object {
+            "touchAction": "none",
+            "transform": "translate(0px,0px)",
+          }
+        }
+        transform={null}
+      />
+      <div>
+        default
+      </div>
+    </li>
+  </ul>
+</div>
+`;

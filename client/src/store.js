@@ -34,6 +34,7 @@ const Events = {
   APPLY_PATCH: Symbol('APPLY_PATCH'),
 
   DRAGGING_NODE: Symbol('DRAGGING_NODE'),
+  SELECT_NODE_CLASS: Symbol('SELECT_NODE_CLASS'),
 }
 /* eslint-enable key-spacing */
 
@@ -74,6 +75,8 @@ function controlsReducer (state, action) {
   switch (action.type) {
     case Events.DRAGGING_NODE:
       return state.set('dragNode', action.node)
+    case Events.SELECT_NODE_CLASS:
+      return state.set('selectedNodeClass', action.clss)
     default:
       return state
   }
@@ -123,7 +126,8 @@ function mapDispatchToProps (dispatch) {
        addEdge:  edge => dispatch({ type: Events.ADD_EDGE,     edge }),
     applyPatch: patch => dispatch({ type: Events.APPLY_PATCH, patch }),
 
-    draggingNode: node => dispatch({ type: Events.DRAGGING_NODE, node }),
+    draggingNode:    node => dispatch({ type: Events.DRAGGING_NODE,     node }),
+    selectNodeClass: clss => dispatch({ type: Events.SELECT_NODE_CLASS, clss }),
 
   }
   /* eslint-enable no-multi-spaces */

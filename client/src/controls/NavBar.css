@@ -1,17 +1,17 @@
 
 #petc-view-mode-control {
   background-color: var(--modal-bg);
-  border-bottom-width: 10px;
+  border: var(--modal-border);
   border-radius: var(--modal-border-radius);
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border: var(--modal-border);
+  border-bottom-width: var(--modal-border-wide);
   border-top: none;
   box-shadow: var(--modal-box-shadow);
+  font-size: 25px;
   overflow: hidden;
-  padding: 20px 20px 20px;
   position: absolute;
-  right: 100px;
+  right: 50px;
   top: 0;
   z-index: var(--z-index-modal);
 }
@@ -30,18 +30,17 @@
 }
 
 #petc-view-mode-control a {
-  color: white;
+  color: grey;
 }
 
 #petc-view-mode-control li {
   display: inline-block;
-  padding: 10px;
-  background-color: #666;
+  padding: 7px;
   border-right: 1px solid #555;
 }
 
 #petc-view-mode-control li.active {
-  background-color: #AAA;
+  background-color: white;
 }
 
 #petc-view-mode-control li.active a {

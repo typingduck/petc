@@ -1,7 +1,6 @@
 #petc-kanvas {
   bottom: 0;
   color: grey;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
   left: 0;
   overflow: hidden;
   padding: 0;
@@ -26,7 +25,7 @@
 }
 
 .petc-node-selected {
-  border-color: red;
+  box-shadow: 0px 0px 15px #FF6699;
 }
 
 .petc-node-label {

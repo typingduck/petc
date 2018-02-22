@@ -15,9 +15,13 @@ export function initialDoc () {
   }
 }
 
-export function createNode (x, y) {
+export function createNode (x, y, optClassName) {
   const id = uuid().substring(0, 8)
-  return {id, x, y}
+  if (optClassName) {
+    return {id, x, y, className: optClassName}
+  } else {
+    return {id, x, y}
+  }
 }
 
 export function createEdge (source, target) {

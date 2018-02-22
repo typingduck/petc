@@ -1,6 +1,7 @@
 :root {
   --modal-bg: rgba(210, 210, 210, 0.5);
   --modal-border-radius: 10px;
+  --modal-border-wide: 5px;
   --modal-border: 2px solid #666;
   --modal-box-shadow: 2px 2px 5px rgba(200, 200, 200, 0.25);
 
@@ -13,6 +14,8 @@
 
 body {
   background-color: #EEE;
+  color: grey;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   margin:0;
   padding:0;
 }

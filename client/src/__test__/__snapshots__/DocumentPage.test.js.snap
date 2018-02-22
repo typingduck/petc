@@ -60,6 +60,26 @@ exports[`matches snapshot 1`] = `
       docLoaded={[Function]}
       viewMode={"VIEW_GRAPH"}
     />
+    <NodeClassSelector
+      addEdge={[Function]}
+      addNode={[Function]}
+      controls={
+        Object {
+          "storeview": true,
+        }
+      }
+      doc={
+        Object {
+          "edges": Object {},
+          "nodes": Object {},
+        }
+      }
+      docId="123"
+      docLoaded={[Function]}
+      removeNode={[Function]}
+      updateNode={[Function]}
+      viewMode={"VIEW_GRAPH"}
+    />
   </div>
   <StoreView
     controls={
