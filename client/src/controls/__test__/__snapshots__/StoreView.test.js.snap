@@ -8,8 +8,11 @@ exports[`renders storeview 1`] = `
   <br />
   {
     "storeview": true,
-    "viewMode": "VIEW_GRAPH"
+    "isNodeMode": true
   }
   <hr />
+  {
+    "a": 1
+  }
 </pre>
 `;

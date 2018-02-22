@@ -22,7 +22,7 @@ jest.mock('react-dom', () => ({
 }))
 
 it('renders document page', () => {
-  window.history.replaceState(null, null, '/docs/doc-id')
+  window.history.replaceState(null, null, '/docs/doc-id#node')
   const component = Renderer.create(<App />)
   expect(component.toJSON()).toMatchSnapshot()
 })

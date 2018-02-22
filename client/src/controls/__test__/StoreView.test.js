@@ -3,16 +3,15 @@ import React from 'react'
 import Renderer from 'react-test-renderer'
 
 import StoreView from '../StoreView'
-import {ViewMode} from '../NavBar'
 
 it('renders storeview', () => {
   const props = {
     docId: '123',
     controls: {
       storeview: true,
-      viewMode: ViewMode.VIEW_GRAPH
+      isNodeMode: true
     },
-    docs: { a: 1 }
+    doc: { a: 1 }
   }
   const component = Renderer.create(<StoreView {...props} />)
   expect(component.toJSON()).toMatchSnapshot()

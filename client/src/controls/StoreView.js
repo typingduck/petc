@@ -6,7 +6,8 @@ import './StoreView.css'
  * Hidden during normal viewing.
  */
 export default function StoreView (props) {
-  if (props.controls.storeview) {
+  if (props.controls.storeview && (
+    props.controls.isNodeMode || props.controls.isEdgeMode)) {
     return (
       <pre id='petc-storeview'>
         {props.docId}<br />
