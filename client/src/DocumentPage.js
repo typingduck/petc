@@ -3,6 +3,7 @@ import React from 'react'
 import Kanvas from './kanvas/Kanvas'
 import NavBar from './controls/NavBar'
 import NodeClassSelector from './controls/NodeClassSelector'
+import EdgeClassSelector from './controls/EdgeClassSelector'
 import StoreView from './controls/StoreView'
 import Trashcan from './controls/Trashcan'
 import {loadDoc, connectSocket} from './model/model'
@@ -95,6 +96,7 @@ export default class DocumentPage extends React.Component {
           updateNode={this.updateNode}
           removeNode={this.removeNode}
         />
+        <EdgeClassSelector {...this.props} />
       </div>
       <StoreView {...this.props} />
     </div>)

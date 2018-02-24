@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shows custom edge styles 1`] = `
+<div
+  id="petc-edge-select-control"
+>
+  <ul>
+    <li
+      className={null}
+      onClick={[Function]}
+    >
+      <div
+        className="petc-edge-select-element"
+      >
+        <div
+          className="petc-edge-select-node-a"
+          id="petc-edge-select-element-default-a"
+        />
+        <div
+          className="petc-edge-select-node-b"
+          id="petc-edge-select-element-default-b"
+        />
+      </div>
+      <div>
+        default
+      </div>
+    </li>
+    <li
+      className={null}
+      onClick={[Function]}
+    >
+      <div
+        className="petc-edge-select-element"
+      >
+        <div
+          className="petc-edge-select-node-a"
+          id="petc-edge-select-element-red-edge-a"
+        />
+        <div
+          className="petc-edge-select-node-b"
+          id="petc-edge-select-element-red-edge-b"
+        />
+      </div>
+      <div>
+        red-edge
+      </div>
+    </li>
+    <li
+      className={null}
+      onClick={[Function]}
+    >
+      <div
+        className="petc-edge-select-element"
+      >
+        <div
+          className="petc-edge-select-node-a"
+          id="petc-edge-select-element-blue-edge-a"
+        />
+        <div
+          className="petc-edge-select-node-b"
+          id="petc-edge-select-element-blue-edge-b"
+        />
+      </div>
+      <div>
+        blue-edge
+      </div>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`visible when edge view mode 1`] = `
+<div
+  id="petc-edge-select-control"
+>
+  <ul>
+    <li
+      className={null}
+      onClick={[Function]}
+    >
+      <div
+        className="petc-edge-select-element"
+      >
+        <div
+          className="petc-edge-select-node-a"
+          id="petc-edge-select-element-default-a"
+        />
+        <div
+          className="petc-edge-select-node-b"
+          id="petc-edge-select-element-default-b"
+        />
+      </div>
+      <div>
+        default
+      </div>
+    </li>
+  </ul>
+</div>
+`;

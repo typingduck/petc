@@ -16,6 +16,7 @@ export function initialDoc () {
 }
 
 export function createNode (x, y, optClassName) {
+  optClassName = optClassName !== 'default' ? optClassName : null
   const id = uuid().substring(0, 8)
   if (optClassName) {
     return {id, x, y, className: optClassName}
@@ -24,9 +25,14 @@ export function createNode (x, y, optClassName) {
   }
 }
 
-export function createEdge (source, target) {
+export function createEdge (source, target, optClassName) {
+  optClassName = optClassName !== 'default' ? optClassName : null
   const id = source + '-' + target
-  return {id, source, target}
+  if (optClassName) {
+    return {id, source, target, className: optClassName}
+  } else {
+    return {id, source, target}
+  }
 }
 
 export async function createNewDoc () {

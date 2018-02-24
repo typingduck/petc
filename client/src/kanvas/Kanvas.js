@@ -46,7 +46,8 @@ class Kanvas extends React.Component {
     if (this.props.controls.isEdgeMode) {
       // If existing selected node then connect, otherwise select
       if (this.state.selectedNode && nodeId !== this.state.selectedNode) {
-        this.props.addEdge(createEdge(this.state.selectedNode, nodeId))
+        this.props.addEdge(
+          createEdge(this.state.selectedNode, nodeId, this.props.controls.selectedEdgeClass))
         this.setState({selectedNode: null})
       } else {
         this.setState({selectedNode: nodeId})
@@ -71,12 +72,13 @@ class Kanvas extends React.Component {
       />
     )
     const edges = !this.state.jsPlmb ? null : Object.values(this.props.doc.edges).map(edge =>
-      <Edge
-        key={edge.id}
-        edge={edge}
-        {...this.props}
-        jsPlmb={this.state.jsPlmb}
-      />
+      this.props.doc.nodes[edge.source] && this.props.doc.nodes[edge.target] &&
+        <Edge
+          key={edge.id + edge.className}
+          edge={edge}
+          {...this.props}
+          jsPlmb={this.state.jsPlmb}
+        />
     )
 
     return (
@@ -107,7 +109,7 @@ class Node extends React.Component {
       'drag': this.onDrag,
       'stop': this.onDragStop,
       containment: true
-      // grid:[50,50]
+      // grid:[25,25]
     }
     this.props.jsPlmb.draggable(nw(this._nodeId), dragOptions)
     this.props.jsPlmb.setDraggable(nw(this._nodeId), this.props.controls.isNodeMode)
@@ -188,7 +190,8 @@ class Edge extends React.Component {
       target: edge.target,
       overlays: []
     }
-    const optStyle = this.props.doc.style.edges[edge.className]
+    const edgeClassName = edge.className || 'default'
+    const optStyle = this.props.doc.style.edges[edgeClassName]
     if (optStyle) {
       Object.assign(edgeInfo, optStyle)
     }
@@ -197,12 +200,15 @@ class Edge extends React.Component {
         [ 'Label', { label: edge.label, cssClass: 'petc-edge-label' } ]
       )
     }
-    const connection = this.props.jsPlmb.connect(edgeInfo)
-    this.setState({connection: connection})
+    this._connection = this.props.jsPlmb.connect(edgeInfo)
   }
 
   componentWillUnmount () {
-    // this.props.jsPlmb.detach(this.state.connection)
+    try {
+      this.props.jsPlmb.deleteConnection(this._connection)
+    } catch (e) {
+      // ignore if already removed
+    }
   }
 
   render () {

@@ -21,8 +21,28 @@ jest.mock('react-dom', () => ({
   })
 }))
 
+const mockJsPlumb = {
+  connect: jest.fn()
+}
+
+jest.mock('jsplumb', () => (
+  { jsPlumb: { getInstance: () => mockJsPlumb } }
+))
+
 it('renders document page', () => {
+  window.history.replaceState(null, null, '/docs/doc-id')
+  const component = Renderer.create(<App />)
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
+it('renders document page #node', () => {
   window.history.replaceState(null, null, '/docs/doc-id#node')
+  const component = Renderer.create(<App />)
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
+it('renders document page #edge', () => {
+  window.history.replaceState(null, null, '/docs/doc-id#edge')
   const component = Renderer.create(<App />)
   expect(component.toJSON()).toMatchSnapshot()
 })

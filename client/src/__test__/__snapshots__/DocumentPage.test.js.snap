@@ -80,6 +80,22 @@ exports[`matches snapshot 1`] = `
       updateNode={[Function]}
       viewMode={"VIEW_GRAPH"}
     />
+    <EdgeClassSelector
+      controls={
+        Object {
+          "storeview": true,
+        }
+      }
+      doc={
+        Object {
+          "edges": Object {},
+          "nodes": Object {},
+        }
+      }
+      docId="123"
+      docLoaded={[Function]}
+      viewMode={"VIEW_GRAPH"}
+    />
   </div>
   <StoreView
     controls={

@@ -1,0 +1,60 @@
+#petc-edge-select-control {
+  background-color: var(--modal-bg);
+  border-radius: var(--modal-border-radius);
+  border: var(--modal-border);
+  border-right-width: var(--modal-border-wide);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+  bottom: 50px;
+  box-shadow: var(--modal-box-shadow);
+  left: 0;
+  padding: 0;
+  position: absolute;
+  top: 20px;
+  z-index: var(--z-index-modal);
+}
+
+#petc-edge-select-control ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#petc-edge-select-control li {
+  align-items: center;
+  border-bottom: 1px solid #555;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2px;
+  opacity: 0.8;
+  padding: 10px;
+}
+
+#petc-edge-select-control li.selected {
+  background-color: white;
+}
+
+.petc-edge-select-element {
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  height: 15px;
+  position: relative;
+  text-align: center;
+  width: 80px;
+}
+
+.petc-edge-select-node-a {
+  height: 10px;
+  left: 0;
+  position: absolute;
+  width: 10px;
+}
+
+.petc-edge-select-node-b {
+  height: 10px;
+  position: absolute;
+  right: 0;
+  width: 10px;
+}
