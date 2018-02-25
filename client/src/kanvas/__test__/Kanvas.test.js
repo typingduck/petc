@@ -5,13 +5,17 @@ import Renderer from 'react-test-renderer'
 import {initialDoc} from '../../model/model'
 import Kanvas from '../Kanvas'
 
+jest.useFakeTimers()
+
 Math.random = () => 0.1
 
 const mockJsPlumb = {
   connect: jest.fn(),
   draggable: jest.fn(),
   repaint: jest.fn(),
-  setDraggable: jest.fn()
+  setDraggable: jest.fn(),
+  bind: jest.fn(),
+  importDefaults: jest.fn()
 }
 
 jest.mock('jsplumb', () => (
@@ -217,7 +221,7 @@ it('should delete node if in trashcan', () => {
   const props = {
     doc: {
       nodes: {
-        'node': { id: 'node', x: 10, y: 20 }
+        'node-id': { id: 'node-id', x: 10, y: 20 }
       },
       edges: {}
     },
@@ -233,11 +237,11 @@ it('should delete node if in trashcan', () => {
   const component = Renderer.create(<Kanvas {...props} />)
   let tree = component.toJSON()
   let nodeDiv = tree.children[0]
-  expect(nodeDiv.props.id).toEqual('node-wrapper')
+  expect(nodeDiv.props.id).toEqual('node-id-wrapper')
 
   // given jsPlumb dragging setup
   const draggable = mockJsPlumb.draggable.mock.calls[0]
-  expect(draggable[0]).toEqual('node-wrapper')
+  expect(draggable[0]).toEqual('node-id-wrapper')
   const onDrag = draggable[1].drag
   const onDragStart = draggable[1].start
   const onDragStop = draggable[1].stop
@@ -250,7 +254,7 @@ it('should delete node if in trashcan', () => {
   onDragStop({ finalPos: [1000, 2000] })
 
   // should emit delete node
-  expect(props.removeNode).toHaveBeenCalledWith({ id: 'node', x: 1000, y: 2000 })
+  expect(props.removeNode).toHaveBeenCalledWith('node-id')
 })
 
 it('should show node label', () => {

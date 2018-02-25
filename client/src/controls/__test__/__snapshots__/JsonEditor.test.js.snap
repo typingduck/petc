@@ -251,9 +251,6 @@ exports[`renders jsonview 1`] = `
                           }
                         }
                       >
-                        <span
-                          className="data-type-label hidden"
-                        />
                         1
                       </div>
                     </div>

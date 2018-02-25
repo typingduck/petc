@@ -1,3 +1,4 @@
+/* global setTimeout */
 import React from 'react'
 import {jsPlumb} from 'jsplumb'
 
@@ -17,6 +18,9 @@ const JSPLUMP_DEFAULTS = {
   Anchor: [ 'Continuous', { shape: 'Circle' } ]
 }
 
+const END_VISIBLE = ['Dot', { radius: 10, cssClass: 'petc-endpoint', hoverClass: 'petc-node-selected' }]
+const END_INVISIBLE = ['Dot', { radius: 10, cssClass: 'petc-hidden', hoverClass: '' }]
+
 /**
  * Show nodes as circles on the page.
  */
@@ -27,11 +31,27 @@ class Kanvas extends React.Component {
 
     this.handleClick = this.handleClick.bind(this)
     this.selectNode = this.selectNode.bind(this)
+    this.onConnectionDetach = this.onConnectionDetach.bind(this)
   }
 
   componentDidMount () {
-    window.j = jsPlumb.getInstance(JSPLUMP_DEFAULTS)
-    this.setState({jsPlmb: window.j})
+    const jsp = jsPlumb.getInstance({ Container: JSPLUMP_DEFAULTS.Container })
+    // Fix for jsplumb overwritting prototype Defaults
+    jsp.Defaults = Object.assign({}, jsp.Defaults, JSPLUMP_DEFAULTS)
+    jsp.bind('connectionDetached', this.onConnectionDetach)
+    this.setState({jsPlmb: jsp})
+    // Fix race condition in jsPlumb for calculating endpoint offsets on
+    // first load
+    setTimeout(jsp.repaintEverything, 40)
+  }
+
+  onConnectionDetach (info) {
+    const edgeId = info.connection.getData().edgeId
+    const props = this.props
+    if (this.props.doc.edges[edgeId]) {
+      // use timeout to fix race condition in jsPlumb
+      setTimeout(() => props.removeEdge(edgeId))
+    }
   }
 
   handleClick (ev) {
@@ -56,6 +76,13 @@ class Kanvas extends React.Component {
   }
 
   render () {
+    if (this.state.jsPlmb) {
+      if (this.props.controls.isEdgeMode) {
+        this.state.jsPlmb.importDefaults({ Endpoint: END_VISIBLE })
+      } else {
+        this.state.jsPlmb.importDefaults({ Endpoint: END_INVISIBLE })
+      }
+    }
     const selectedNode = this.props.controls.isEdgeMode && this.state.selectedNode
     if (!this.props.doc.style) {
       this.props.doc.style = { nodes: {}, edges: {} }
@@ -135,7 +162,7 @@ class Node extends React.Component {
     const [x, y] = ev.finalPos
     const newNode = Object.assign({}, this.props.node, {x, y})
     if (isInTrashCan(newNode)) {
-      this.props.removeNode(newNode)
+      this.props.removeNode(newNode.id)
     } else {
       this.props.updateNode(newNode)
     }
@@ -200,6 +227,7 @@ class Edge extends React.Component {
         [ 'Label', { label: edge.label, cssClass: 'petc-edge-label' } ]
       )
     }
+    edgeInfo.data = { edgeId: edge.id }
     this._connection = this.props.jsPlmb.connect(edgeInfo)
   }
 
@@ -211,9 +239,24 @@ class Edge extends React.Component {
     }
   }
 
+  componentDidUpdate () {
+    if (this._connection) {
+      toggleClass(this._connection.endpoints[0].canvas, 'petc-hidden', !this.props.controls.isEdgeMode)
+      toggleClass(this._connection.endpoints[1].canvas, 'petc-hidden', !this.props.controls.isEdgeMode)
+    }
+  }
+
   render () {
     // could return null, but return something helps with testing
     return <div id={this.props.edge.id} />
+  }
+}
+
+function toggleClass (ele, className, add) {
+  if (add) {
+    ele.classList.add(className)
+  } else {
+    ele.classList.remove(className)
   }
 }
 

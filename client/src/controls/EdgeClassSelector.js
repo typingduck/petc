@@ -14,6 +14,18 @@ class EdgeClassSelector extends React.Component {
   }
 }
 
+const JSPLUMP_DEFAULTS = {
+  Container: 'petc-edge-select-control',
+  PaintStyle: {
+    strokeWidth: 2,
+    stroke: 'rgba(100, 100, 100, 0.5)'
+  },
+  Connector: [ 'Straight' ],
+  Endpoint: [ 'Dot', { radius: 1 } ],
+  EndpointStyle: { fill: 'grey' },
+  Anchor: [ 'Continuous', { shape: 'Circle' } ]
+}
+
 class EdgeClassSelectorInternal extends React.Component {
   constructor (props) {
     super(props)
@@ -25,9 +37,10 @@ class EdgeClassSelectorInternal extends React.Component {
   }
 
   componentDidMount () {
-    this.setState({
-      jsPlmb: jsPlumb.getInstance({ Container: 'petc-edge-select-control' })
-    })
+    const jsp = jsPlumb.getInstance({ Container: JSPLUMP_DEFAULTS.Container })
+    // Fix for jsplumb overwritting prototype Defaults
+    jsp.Defaults = Object.assign({}, jsp.Defaults, JSPLUMP_DEFAULTS)
+    this.setState({jsPlmb: jsp})
   }
 
   classSelected (edgeClass) {

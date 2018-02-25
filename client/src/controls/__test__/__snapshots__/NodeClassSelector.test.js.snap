@@ -333,9 +333,6 @@ exports[`click to show new node class editor 1`] = `
                           }
                         >
                           <span
-                            className="data-type-label hidden"
-                          />
-                          <span
                             className="string-value"
                             onClick={[Function]}
                             style={
@@ -519,9 +516,6 @@ exports[`click to show new node class editor 1`] = `
                             }
                           }
                         >
-                          <span
-                            className="data-type-label hidden"
-                          />
                           <span
                             className="string-value"
                             onClick={[Function]}
@@ -707,9 +701,6 @@ exports[`click to show new node class editor 1`] = `
                           }
                         >
                           <span
-                            className="data-type-label hidden"
-                          />
-                          <span
                             className="string-value"
                             onClick={[Function]}
                             style={
@@ -894,9 +885,6 @@ exports[`click to show new node class editor 1`] = `
                           }
                         >
                           <span
-                            className="data-type-label hidden"
-                          />
-                          <span
                             className="string-value"
                             onClick={[Function]}
                             style={
@@ -1080,9 +1068,6 @@ exports[`click to show new node class editor 1`] = `
                             }
                           }
                         >
-                          <span
-                            className="data-type-label hidden"
-                          />
                           <span
                             className="string-value"
                             onClick={[Function]}

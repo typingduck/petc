@@ -22,6 +22,7 @@ export default class DocumentPage extends React.Component {
     this.updateNode = this.updateNode.bind(this)
     this.removeNode = this.removeNode.bind(this)
     this.addEdge = this.addEdge.bind(this)
+    this.removeEdge = this.removeEdge.bind(this)
     this.addEdgeClass = this.addEdgeClass.bind(this)
     this.setDoc = this.setDoc.bind(this)
     this.receiveUpdate = this.receiveUpdate.bind(this)
@@ -73,14 +74,19 @@ export default class DocumentPage extends React.Component {
     this.socket.updateNode(node)
   }
 
-  removeNode (node) {
-    this.props.removeNode(node)
-    this.socket.removeNode(node)
+  removeNode (nodeId) {
+    this.props.removeNode(nodeId)
+    this.socket.removeNode(nodeId)
   }
 
   addEdge (edge) {
     this.props.addEdge(edge)
     this.socket.addEdge(edge)
+  }
+
+  removeEdge (edgeId) {
+    this.props.removeEdge(edgeId)
+    this.socket.removeEdge(edgeId)
   }
 
   addEdgeClass (name, style) {
@@ -96,9 +102,10 @@ export default class DocumentPage extends React.Component {
         <Kanvas
           {...this.props}
           addNode={this.addNode}
-          addEdge={this.addEdge}
-          updateNode={this.updateNode}
           removeNode={this.removeNode}
+          updateNode={this.updateNode}
+          addEdge={this.addEdge}
+          removeEdge={this.removeEdge}
         />
         <Trashcan {...this.props} />
         <NodeClassSelector

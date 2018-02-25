@@ -31,3 +31,11 @@
 .petc-node-label {
   text-align: center;
 }
+
+.petc-hidden {
+  display: none;
+}
+
+.petc-endpoint {
+  border-radius: 10px;
+}

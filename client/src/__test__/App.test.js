@@ -22,7 +22,9 @@ jest.mock('react-dom', () => ({
 }))
 
 const mockJsPlumb = {
-  connect: jest.fn()
+  connect: jest.fn(),
+  bind: jest.fn(),
+  importDefaults: jest.fn()
 }
 
 jest.mock('jsplumb', () => (
