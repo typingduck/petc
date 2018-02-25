@@ -17,7 +17,7 @@ import { ViewMode, viewModeFromHash } from './controls/NavBar'
  */
 function initialControls () {
   return {
-    storeview: true
+    storeview: false
   }
 }
 

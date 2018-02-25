@@ -192,27 +192,6 @@ exports[`renders document page #edge 1`] = `
       </ul>
     </div>
   </div>
-  <pre
-    id="petc-storeview"
-  >
-    doc-id
-    <br />
-    {
-      "storeview": true,
-      "viewMode": "EDIT_EDGES",
-      "isNodeMode": false,
-      "isEdgeMode": true
-    }
-    <hr />
-    {
-      "nodes": {},
-      "edges": {},
-      "style": {
-        "nodes": {},
-        "edges": {}
-      }
-    }
-  </pre>
 </div>
 `;
 
@@ -411,27 +390,6 @@ exports[`renders document page #node 1`] = `
       </ul>
     </div>
   </div>
-  <pre
-    id="petc-storeview"
-  >
-    doc-id
-    <br />
-    {
-      "storeview": true,
-      "viewMode": "EDIT_NODES",
-      "isNodeMode": true,
-      "isEdgeMode": false
-    }
-    <hr />
-    {
-      "nodes": {},
-      "edges": {},
-      "style": {
-        "nodes": {},
-        "edges": {}
-      }
-    }
-  </pre>
 </div>
 `;
 
