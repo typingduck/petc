@@ -2,16 +2,20 @@ import React from 'react'
 import Draggable from 'react-draggable'
 
 import './NodeClassSelector.css'
+import JsonEditor from './JsonEditor'
 import {createNode} from '../model/model'
 
 class NodeClassSelector extends React.Component {
   constructor (props) {
     super(props)
     this._mouseDown = false
+    this.state = { nodeClassDialogVisible: false }
 
-    this.dragHandleStop = this.dragHandleStop.bind(this)
-    this.onMouseDown = this.onMouseDown.bind(this)
     this.createNodeClassView = this.createNodeClassView.bind(this)
+    this.dragHandleStop = this.dragHandleStop.bind(this)
+    this.newNodeClassFromEditor = this.newNodeClassFromEditor.bind(this)
+    this.onMouseDown = this.onMouseDown.bind(this)
+    this.toggleNewNodeClassDialog = this.toggleNewNodeClassDialog.bind(this)
   }
 
   dragHandleStop (ev, data) {
@@ -71,6 +75,15 @@ class NodeClassSelector extends React.Component {
     </li>)
   }
 
+  toggleNewNodeClassDialog () {
+    this.setState({ nodeClassDialogVisible: !this.state.nodeClassDialogVisible })
+  }
+
+  newNodeClassFromEditor (name, style) {
+    this.toggleNewNodeClassDialog()
+    this.props.addNodeClass(name, style)
+  }
+
   render () {
     const nodeClasses = Object.assign(
       { default: {} },
@@ -84,12 +97,29 @@ class NodeClassSelector extends React.Component {
             {Object.entries(nodeClasses).map(([className, style]) =>
               this.createNodeClassView(className, style)
             )}
+            <li onClick={this.toggleNewNodeClassDialog}> + new </li>
           </ul>
+          <JsonEditor
+            isOpen={this.state.nodeClassDialogVisible}
+            json={templateNodeClass()}
+            onCancel={this.toggleNewNodeClassDialog}
+            onApply={this.newNodeClassFromEditor}
+          />
         </div>
       )
     } else {
       return null
     }
+  }
+}
+
+function templateNodeClass () {
+  return {
+    borderRadius: '20px',
+    borderWidth: '10px',
+    borderColor: 'grey',
+    height: '32px',
+    width: '32px'
   }
 }
 

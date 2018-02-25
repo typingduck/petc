@@ -2,6 +2,7 @@
 import React from 'react'
 import Renderer from 'react-test-renderer'
 
+import JsonEditor from '../JsonEditor'
 import NodeClassSelector from '../NodeClassSelector'
 
 jest.mock('uuid/v4', () => () => 'u-u-i-d')
@@ -28,7 +29,8 @@ beforeEach(() => {
       }
     },
     addNode: jest.fn(),
-    selectNodeClass: jest.fn()
+    selectNodeClass: jest.fn(),
+    addNodeClass: jest.fn()
   }
 })
 
@@ -105,6 +107,33 @@ it('drag to add node', () => {
   expect(props.addNode).toHaveBeenCalledWith(
     {'className': 'class-red', 'id': 'u-u-i-d', 'x': 30, 'y': 30}
   )
+})
+
+it('click to show new node class editor', () => {
+  const component = Renderer.create(<NodeClassSelector {...props} />)
+  const ul = component.toJSON().children[0]
+
+  // click new button
+  const newNodeClass = nodeFromUl(ul, 3)
+  newNodeClass.props.onClick()
+  expect(component.toJSON()).toMatchSnapshot()
+
+  // click again to hide
+  newNodeClass.props.onClick()
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
+it('create new node class from dialog', () => {
+  const component = Renderer.create(<NodeClassSelector {...props} />)
+  const ul = component.toJSON().children[0]
+
+  // click to show dialog
+  const newNodeClass = nodeFromUl(ul, 3)
+  newNodeClass.props.onClick()
+
+  const editor = component.root.findByType(JsonEditor)
+  editor.props.onApply('name', { 'color': 'red' })
+  expect(props.addNodeClass).toHaveBeenCalledWith('name', { 'color': 'red' })
 })
 
 function nodeFromUl (ul, index) {

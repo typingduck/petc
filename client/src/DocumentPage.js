@@ -18,9 +18,11 @@ export default class DocumentPage extends React.Component {
     this.socket = null
 
     this.addNode = this.addNode.bind(this)
+    this.addNodeClass = this.addNodeClass.bind(this)
     this.updateNode = this.updateNode.bind(this)
     this.removeNode = this.removeNode.bind(this)
     this.addEdge = this.addEdge.bind(this)
+    this.addEdgeClass = this.addEdgeClass.bind(this)
     this.setDoc = this.setDoc.bind(this)
     this.receiveUpdate = this.receiveUpdate.bind(this)
     this.setSocket = this.setSocket.bind(this)
@@ -61,6 +63,11 @@ export default class DocumentPage extends React.Component {
     this.socket.addNode(node)
   }
 
+  addNodeClass (name, style) {
+    this.props.addNodeClass(name, style)
+    this.socket.addNodeClass(name, style)
+  }
+
   updateNode (node) {
     this.props.updateNode(node)
     this.socket.updateNode(node)
@@ -74,6 +81,11 @@ export default class DocumentPage extends React.Component {
   addEdge (edge) {
     this.props.addEdge(edge)
     this.socket.addEdge(edge)
+  }
+
+  addEdgeClass (name, style) {
+    this.props.addEdgeClass(name, style)
+    this.socket.addEdgeClass(name, style)
   }
 
   render () {
@@ -92,11 +104,15 @@ export default class DocumentPage extends React.Component {
         <NodeClassSelector
           {...this.props}
           addNode={this.addNode}
+          addNodeClass={this.addNodeClass}
           addEdge={this.addEdge}
           updateNode={this.updateNode}
           removeNode={this.removeNode}
         />
-        <EdgeClassSelector {...this.props} />
+        <EdgeClassSelector
+          {...this.props}
+          addEdgeClass={this.addEdgeClass}
+        />
       </div>
       <StoreView {...this.props} />
     </div>)

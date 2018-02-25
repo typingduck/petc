@@ -63,6 +63,7 @@ exports[`matches snapshot 1`] = `
     <NodeClassSelector
       addEdge={[Function]}
       addNode={[Function]}
+      addNodeClass={[Function]}
       controls={
         Object {
           "storeview": true,
@@ -81,6 +82,7 @@ exports[`matches snapshot 1`] = `
       viewMode={"VIEW_GRAPH"}
     />
     <EdgeClassSelector
+      addEdgeClass={[Function]}
       controls={
         Object {
           "storeview": true,

@@ -1,4 +1,6 @@
 :root {
+  --font: "Comic Sans MS", "Comic Sans", cursive;
+
   --modal-bg: rgba(210, 210, 210, 0.5);
   --modal-border-radius: 10px;
   --modal-border-wide: 5px;
@@ -15,7 +17,7 @@
 body {
   background-color: #EEE;
   color: grey;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-family: var(--font);
   margin:0;
   padding:0;
 }

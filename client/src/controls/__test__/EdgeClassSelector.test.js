@@ -3,6 +3,7 @@ import React from 'react'
 import Renderer from 'react-test-renderer'
 
 import EdgeClassSelector from '../EdgeClassSelector'
+import JsonEditor from '../JsonEditor'
 
 jest.mock('uuid/v4', () => () => 'u-u-i-d')
 
@@ -44,7 +45,8 @@ beforeEach(() => {
       }
     },
     addEdge: jest.fn(),
-    selectEdgeClass: jest.fn()
+    selectEdgeClass: jest.fn(),
+    addEdgeClass: jest.fn()
   }
 })
 
@@ -109,6 +111,34 @@ it('click to select edge', () => {
   // should deselect on second click
   simulateClickEdge(blueEdge)
   expect(props.selectEdgeClass).toHaveBeenCalledWith(null)
+})
+
+it('click to show new edge class editor', () => {
+  const component = Renderer.create(<EdgeClassSelector {...props} />)
+  const ul = component.toJSON().children[0]
+
+  // click new button
+  const newEdgeClass = edgeFromUl(ul, 3)
+  newEdgeClass.props.onClick()
+  expect(component.toJSON()).toMatchSnapshot()
+
+  // click again to hide
+  newEdgeClass.props.onClick()
+  expect(component.toJSON()).toMatchSnapshot()
+})
+
+it('create new edge class from dialog', () => {
+  const component = Renderer.create(<EdgeClassSelector {...props} />)
+  const ul = component.toJSON().children[0]
+
+  // click to show dialog
+  const newEdgeClass = edgeFromUl(ul, 3)
+  newEdgeClass.props.onClick()
+
+  const editor = component.root.findByType(JsonEditor)
+
+  editor.props.onApply('name', { 'color': 'red' })
+  expect(props.addEdgeClass).toHaveBeenCalledWith('name', { 'color': 'red' })
 })
 
 function edgeFromUl (ul, index) {

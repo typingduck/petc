@@ -26,14 +26,17 @@ function initialControls () {
  */
 /* eslint-disable key-spacing */
 const Events = {
-  DOC_LOADED:  Symbol('DOC_LOADED'),
-  ADD_NODE:    Symbol('ADD_NODE'),
-  UPDATE_NODE: Symbol('UPDATE_NODE'),
-  DELETE_NODE: Symbol('DELETE_NODE'),
-  ADD_EDGE:    Symbol('ADD_EDGE'),
-  APPLY_PATCH: Symbol('APPLY_PATCH'),
+  DOC_LOADED:     Symbol('DOC_LOADED'),
 
-  DRAGGING_NODE: Symbol('DRAGGING_NODE'),
+  ADD_NODE:       Symbol('ADD_NODE'),
+  ADD_NODE_CLASS: Symbol('ADD_NODE_CLASS'),
+  UPDATE_NODE:    Symbol('UPDATE_NODE'),
+  DELETE_NODE:    Symbol('DELETE_NODE'),
+  ADD_EDGE:       Symbol('ADD_EDGE'),
+  ADD_EDGE_CLASS: Symbol('ADD_EDGE_CLASS'),
+  APPLY_PATCH:    Symbol('APPLY_PATCH'),
+
+  DRAGGING_NODE:     Symbol('DRAGGING_NODE'),
   SELECT_NODE_CLASS: Symbol('SELECT_NODE_CLASS'),
   SELECT_EDGE_CLASS: Symbol('SELECT_EDGE_CLASS'),
 }
@@ -52,10 +55,14 @@ function docReducer (state, action) {
     case Events.ADD_NODE:
     case Events.UPDATE_NODE:
       return state.setIn(['nodes', action.node.id], action.node)
+    case Events.ADD_NODE_CLASS:
+      return state.setIn(['style', 'nodes', action.name], action.style)
     case Events.DELETE_NODE:
       return state.removeIn(['nodes', action.node.id])
     case Events.ADD_EDGE:
       return state.setIn(['edges', action.edge.id], action.edge)
+    case Events.ADD_EDGE_CLASS:
+      return state.setIn(['style', 'edges', action.name], action.style)
     case Events.APPLY_PATCH: {
       const doc = state.toJS()
       jsonpatch.apply(doc, action.patch)
@@ -123,10 +130,13 @@ function mapDispatchToProps (dispatch) {
   return {
 
      docLoaded:   doc => dispatch({ type: Events.DOC_LOADED,    doc }),
+
        addNode:  node => dispatch({ type: Events.ADD_NODE,     node }),
+       addNodeClass:  (name, style) => dispatch({ type: Events.ADD_NODE_CLASS, name, style }),
     updateNode:  node => dispatch({ type: Events.UPDATE_NODE,  node }),
     removeNode:  node => dispatch({ type: Events.DELETE_NODE,  node }),
        addEdge:  edge => dispatch({ type: Events.ADD_EDGE,     edge }),
+       addEdgeClass:  (name, style) => dispatch({ type: Events.ADD_EDGE_CLASS, name, style }),
     applyPatch: patch => dispatch({ type: Events.APPLY_PATCH, patch }),
 
     draggingNode:    node => dispatch({ type: Events.DRAGGING_NODE,     node }),

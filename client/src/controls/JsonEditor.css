@@ -1,0 +1,50 @@
+
+.petc-json-editor {
+  background-color:  rgba(210, 210, 210, 0.85);
+  border: var(--modal-border);
+  border-radius: var(--modal-border-radius);
+  box-shadow: var(--modal-box-shadow);
+  left: 10%;
+  padding: 20px 20px 20px;
+  position: absolute;
+  top: 10%;
+  width: 400px;
+  z-index: var(--z-index-modal);
+}
+
+.petc-json-editor button {
+  background: none;
+  border-radius: 5px;
+  border: 2px solid grey;
+  color: grey;
+  font-family: var(--font);
+  font-weight: bold;
+  margin: 10px;
+}
+
+.petc-json-editor-name {
+  text-align: center;
+}
+
+.petc-json-editor input {
+  background-color:  rgba(210, 210, 210, 0.9);
+  border-radius: 5px;
+  border: 1px solid rgba(210, 210, 210, 1);
+  color: grey;
+  font-family: var(--font);
+  font-size: larger;
+  font-weight: bold;
+  margin: 10px;
+  text-align: center;
+}
+
+.react-json-view {
+  border-radius: 5px;
+  border: 1px solid rgba(210, 210, 210, 1);
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.pretty-json-container {
+  background-color:  rgba(210, 210, 210, 0.9);
+}

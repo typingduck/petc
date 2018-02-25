@@ -1,7 +1,8 @@
 import React from 'react'
+import {jsPlumb} from 'jsplumb'
 
 import './EdgeClassSelector.css'
-import {jsPlumb} from 'jsplumb'
+import JsonEditor from './JsonEditor'
 
 class EdgeClassSelector extends React.Component {
   render () {
@@ -16,8 +17,11 @@ class EdgeClassSelector extends React.Component {
 class EdgeClassSelectorInternal extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { jsPlmb: null }
+    this.state = { jsPlmb: null, edgeClassDialogVisible: false }
+
     this.handleClassSelect = this.handleClassSelect.bind(this)
+    this.newEdgeClassFromEditor = this.newEdgeClassFromEditor.bind(this)
+    this.toggleNewEdgeClassDialog = this.toggleNewEdgeClassDialog.bind(this)
   }
 
   componentDidMount () {
@@ -37,6 +41,19 @@ class EdgeClassSelectorInternal extends React.Component {
 
   liClassName (className) {
     return this.classSelected(className) ? 'selected' : null
+  }
+
+  toggleNewEdgeClassDialog () {
+    this.setState({ edgeClassDialogVisible: !this.state.edgeClassDialogVisible })
+  }
+
+  newEdgeClassFromEditor (name, style) {
+    this.toggleNewEdgeClassDialog()
+    this.props.addEdgeClass(name, style)
+  }
+
+  hideNewEdgeClassDialog () {
+    this.setState({ edgeClassDialogVisible: false })
   }
 
   render () {
@@ -61,9 +78,32 @@ class EdgeClassSelectorInternal extends React.Component {
               <div>{className}</div>
             </li>
           )}
+          <li onClick={this.toggleNewEdgeClassDialog}> + new </li>
         </ul>
+        <JsonEditor
+          json={templateEdgeClass()}
+          onCancel={this.toggleNewEdgeClassDialog}
+          onApply={this.newEdgeClassFromEditor}
+          isOpen={this.state.edgeClassDialogVisible}
+        />
       </div>
     )
+  }
+}
+
+function templateEdgeClass () {
+  return {
+    paintStyle: {
+      stroke: 'grey',
+      strokeWidth: 2
+    },
+    hoverPaintStyle: { stroke: 'cyan' },
+    anchors: [ 'AutoDefault', 'AutoDefault' ],
+    overlays: [
+      ['Arrow', { width: 20, length: 22, location: 1.0, cssClass: 'petc-arrow' }],
+      ['Arrow', { width: 20, length: 22, location: 0, cssClass: 'petc-arrow', direction: -1 }]
+    ],
+    connector: [ 'Bezier' ]
   }
 }
 
