@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './HomePage.css'
-import {createNewDoc} from './model/model'
+import {createNewDoc, createDemoDoc} from './model/model'
 
 /**
  * Default home page. Shown before user starts editing document.
@@ -10,14 +10,19 @@ class HomePage extends React.Component {
   constructor (props) {
     super(props)
 
-    // This binding is necessary to make `this` work in the callback
+    this.newDemoClick = this.newDemoClick.bind(this)
     this.newDocClick = this.newDocClick.bind(this)
   }
 
   newDocClick () {
-    const history = this.props.history
     createNewDoc().then(doc => {
-      history.push(`/docs/${doc.id}#node`)
+      this.props.history.push(`/docs/${doc.id}#node`)
+    })
+  }
+
+  newDemoClick () {
+    createDemoDoc().then(doc => {
+      this.props.history.push(`/docs/${doc.id}`)
     })
   }
 
@@ -27,6 +32,8 @@ class HomePage extends React.Component {
         <h1>pannus et circulos</h1>
         <div className='petc-homepage'>
           <a id='petc-create-new' href='#new' onClick={this.newDocClick}>Create New</a>
+          <br />
+          <a id='petc-create-demo' href='#demo' onClick={this.newDemoClick}>Demo doc</a>
         </div>
       </div>
     )

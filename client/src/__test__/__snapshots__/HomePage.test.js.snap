@@ -17,6 +17,14 @@ exports[`matches snapshot 1`] = `
     >
       Create New
     </a>
+    <br />
+    <a
+      href="#demo"
+      id="petc-create-demo"
+      onClick={[Function]}
+    >
+      Demo doc
+    </a>
   </div>
 </div>
 `;

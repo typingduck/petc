@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 import uuid from 'uuid/v4'
 
 import config from '../conf/config'
+import demodoc from '../conf/demodoc.json'
 
 export function initialDoc () {
   return {
@@ -37,6 +38,11 @@ export function createEdge (source, target, optClassName) {
 
 export async function createNewDoc () {
   const {data} = await db().post('docs', initialDoc())
+  return data
+}
+
+export async function createDemoDoc () {
+  const {data} = await db().post('docs', demodoc)
   return data
 }
 
