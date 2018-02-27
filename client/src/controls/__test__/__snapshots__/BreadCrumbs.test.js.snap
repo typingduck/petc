@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders breadcrumb for edge-view with 1 node 1`] = `
+<div
+  id="petc-breadcrumbs"
+>
+   
+  <p>
+     use the node view 
+    <br />
+     to create 2 or more nodes 
+  </p>
+   
+</div>
+`;
+
+exports[`renders breadcrumb for edge-view with 2 nodes no edge 1`] = `
+<div
+  id="petc-breadcrumbs"
+>
+   
+  <p>
+     click on nodes 
+    <br />
+     to connect them 
+  </p>
+   
+</div>
+`;
+
+exports[`renders nothing by default 1`] = `
+<div
+  id="petc-breadcrumbs"
+>
+   
+   
+</div>
+`;
+
+exports[`renders nothing for edge-view with edges 1`] = `
+<div
+  id="petc-breadcrumbs"
+>
+   
+   
+</div>
+`;
+
+exports[`renders nothing for node-view with nodes 1`] = `
+<div
+  id="petc-breadcrumbs"
+>
+   
+   
+</div>
+`;

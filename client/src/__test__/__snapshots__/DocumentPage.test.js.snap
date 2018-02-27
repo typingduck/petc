@@ -99,22 +99,38 @@ exports[`matches snapshot 1`] = `
       docLoaded={[Function]}
       viewMode={"VIEW_GRAPH"}
     />
+    <BreadCrumbs
+      controls={
+        Object {
+          "storeview": true,
+        }
+      }
+      doc={
+        Object {
+          "edges": Object {},
+          "nodes": Object {},
+        }
+      }
+      docId="123"
+      docLoaded={[Function]}
+      viewMode={"VIEW_GRAPH"}
+    />
+    <StoreView
+      controls={
+        Object {
+          "storeview": true,
+        }
+      }
+      doc={
+        Object {
+          "edges": Object {},
+          "nodes": Object {},
+        }
+      }
+      docId="123"
+      docLoaded={[Function]}
+      viewMode={"VIEW_GRAPH"}
+    />
   </div>
-  <StoreView
-    controls={
-      Object {
-        "storeview": true,
-      }
-    }
-    doc={
-      Object {
-        "edges": Object {},
-        "nodes": Object {},
-      }
-    }
-    docId="123"
-    docLoaded={[Function]}
-    viewMode={"VIEW_GRAPH"}
-  />
 </div>
 `;

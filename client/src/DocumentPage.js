@@ -1,9 +1,10 @@
 import React from 'react'
 
+import BreadCrumbs from './controls/BreadCrumbs'
+import EdgeClassSelector from './controls/EdgeClassSelector'
 import Kanvas from './kanvas/Kanvas'
 import NavBar from './controls/NavBar'
 import NodeClassSelector from './controls/NodeClassSelector'
-import EdgeClassSelector from './controls/EdgeClassSelector'
 import StoreView from './controls/StoreView'
 import Trashcan from './controls/Trashcan'
 import {loadDoc, connectSocket} from './model/model'
@@ -120,8 +121,9 @@ export default class DocumentPage extends React.Component {
           {...this.props}
           addEdgeClass={this.addEdgeClass}
         />
+        <BreadCrumbs {...this.props} />
+        <StoreView {...this.props} />
       </div>
-      <StoreView {...this.props} />
     </div>)
   }
 }

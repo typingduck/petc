@@ -191,6 +191,17 @@ exports[`renders document page #edge 1`] = `
         </li>
       </ul>
     </div>
+    <div
+      id="petc-breadcrumbs"
+    >
+       
+      <p>
+         use the node view 
+        <br />
+         to create 2 or more nodes 
+      </p>
+       
+    </div>
   </div>
 </div>
 `;
@@ -389,6 +400,17 @@ exports[`renders document page #node 1`] = `
         </li>
       </ul>
     </div>
+    <div
+      id="petc-breadcrumbs"
+    >
+       
+      <p>
+         click on the canvas 
+        <br />
+         to create nodes 
+      </p>
+       
+    </div>
   </div>
 </div>
 `;
@@ -552,6 +574,12 @@ exports[`renders document page 1`] = `
           />
         </g>
       </svg>
+    </div>
+    <div
+      id="petc-breadcrumbs"
+    >
+       
+       
     </div>
   </div>
 </div>
