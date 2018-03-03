@@ -1,4 +1,4 @@
-/* global beforeEach expect it jest */
+/* global beforeEach expect global it jest */
 import React from 'react'
 import Renderer from 'react-test-renderer'
 
@@ -11,9 +11,9 @@ const mockJsPlumb = {
   connect: jest.fn()
 }
 
-jest.mock('jsplumb', () => (
-  { jsPlumb: { getInstance: () => mockJsPlumb } }
-))
+global.jsPlumb = {
+  getInstance: () => mockJsPlumb
+}
 
 let props
 

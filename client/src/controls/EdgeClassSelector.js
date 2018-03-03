@@ -1,5 +1,5 @@
+/* global jsPlumb */
 import React from 'react'
-import {jsPlumb} from 'jsplumb'
 
 import './EdgeClassSelector.css'
 import JsonEditor from './JsonEditor'

@@ -1,4 +1,4 @@
-/* global expect it jest */
+/* global expect it global jest */
 import React from 'react'
 import Renderer from 'react-test-renderer'
 
@@ -27,9 +27,9 @@ const mockJsPlumb = {
   importDefaults: jest.fn()
 }
 
-jest.mock('jsplumb', () => (
-  { jsPlumb: { getInstance: () => mockJsPlumb } }
-))
+global.jsPlumb = {
+  getInstance: () => mockJsPlumb
+}
 
 it('renders document page', () => {
   window.history.replaceState(null, null, '/docs/doc-id')

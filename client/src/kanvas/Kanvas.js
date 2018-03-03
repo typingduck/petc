@@ -1,6 +1,5 @@
-/* global setTimeout */
+/* global setTimeout jsPlumb */
 import React from 'react'
-import {jsPlumb} from 'jsplumb'
 
 import './Kanvas.css'
 import {createNode, createEdge} from '../model/model'
