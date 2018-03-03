@@ -3102,7 +3102,7 @@
          * creates a timestamp, using milliseconds since 1970, but as a string.
          */
         _timestamp = function () {
-            return "" + (new Date()).getTime();
+            return null; //"" + (new Date()).getTime();
         },
 
     // helper method to update the hover style whenever it, or paintStyle, changes.
