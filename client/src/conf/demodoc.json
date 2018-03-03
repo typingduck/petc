@@ -203,9 +203,12 @@
     },
     "edges": {
       "default": {
-        "anchor": [ "Left", "Right" ]
+        "anchor": [ "Left", "Right" ],
+        "connector": [ "Bezier", { "curviness": 30 }  ]
       },
       "red-edge": {
+        "anchor": [ "Left", "Right" ],
+        "connector": [ "Bezier", { "curviness": 30 }  ],
         "paintStyle": {
           "stroke": "red"
         }

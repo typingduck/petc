@@ -11,14 +11,14 @@ const JSPLUMP_DEFAULTS = {
     strokeWidth: 2,
     stroke: 'rgba(100, 100, 100, 0.5)'
   },
-  Connector: [ 'Straight' ],
+  Connector: [ 'StateMachine', { curviness: 10, margin: 3, proximityLimit: 80 }  ],
   Endpoint: [ 'Dot', { radius: 1 } ],
-  EndpointStyle: { fill: 'grey' },
+  EndpointStyle: { fill: 'none' },
   Anchor: [ 'Continuous', { shape: 'Circle' } ]
 }
 
-const END_VISIBLE = ['Dot', { radius: 10, cssClass: 'petc-endpoint', hoverClass: 'petc-node-selected' }]
-const END_INVISIBLE = ['Dot', { radius: 10, cssClass: 'petc-hidden', hoverClass: '' }]
+const END_VISIBLE = ['Dot', { radius: 6, cssClass: 'petc-endpoint', hoverClass: 'petc-node-selected' }]
+const END_INVISIBLE = ['Dot', { radius: 6, cssClass: 'petc-endpoint petc-hidden', hoverClass: 'petc-node-selected' }]
 
 /**
  * Show nodes as circles on the page.

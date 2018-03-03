@@ -8,7 +8,7 @@
   position: absolute;
   text-align: center;
   width: 100px;
-  z-index: var(--z-index-can)
+  z-index: var(--z-index-page-bg)
 }
 
 #petc-trashcan.active {

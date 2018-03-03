@@ -1,6 +1,6 @@
 
 .petc-json-editor {
-  background-color:  rgba(210, 210, 210, 0.85);
+  background-color:  var(--editor-bg);
   border: var(--modal-border);
   border-radius: var(--modal-border-radius);
   box-shadow: var(--modal-box-shadow);
@@ -27,7 +27,7 @@
 }
 
 .petc-json-editor input {
-  background-color:  rgba(210, 210, 210, 0.9);
+  background-color: var(--editor-bg);
   border-radius: 5px;
   border: 1px solid rgba(210, 210, 210, 1);
   color: grey;
@@ -46,5 +46,5 @@
 }
 
 .pretty-json-container {
-  background-color:  rgba(210, 210, 210, 0.9);
+  background-color: var(--editor-bg);
 }

@@ -4,5 +4,5 @@
   left: 70%;
   position: absolute;
   top: 50%;
-  z-index: var(--z-index-modal);
+  z-index: var(--z-index-page-bg);
 }
