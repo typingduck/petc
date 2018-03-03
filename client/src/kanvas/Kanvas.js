@@ -39,9 +39,6 @@ class Kanvas extends React.Component {
     jsp.Defaults = Object.assign({}, jsp.Defaults, JSPLUMP_DEFAULTS)
     jsp.bind('connectionDetached', this.onConnectionDetach)
     this.setState({jsPlmb: jsp})
-    // Fix race condition in jsPlumb for calculating endpoint offsets on
-    // first load
-    setTimeout(jsp.repaintEverything, 40)
   }
 
   onConnectionDetach (info) {
