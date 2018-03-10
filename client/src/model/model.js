@@ -5,6 +5,8 @@ import uuid from 'uuid/v4'
 import config from '../conf/config'
 import demodoc from '../conf/demodoc.json'
 
+export const DEFAULT_CLASS_NAME = 'default'
+
 export function initialDoc () {
   return {
     nodes: {},  // map of id -> {id, x, y } optionally { label, className }
@@ -17,7 +19,7 @@ export function initialDoc () {
 }
 
 export function createNode (x, y, optClassName) {
-  optClassName = optClassName !== 'default' ? optClassName : null
+  optClassName = optClassName !== DEFAULT_CLASS_NAME ? optClassName : null
   const id = uuid().substring(0, 8)
   if (optClassName) {
     return {id, x, y, className: optClassName}
@@ -27,7 +29,7 @@ export function createNode (x, y, optClassName) {
 }
 
 export function createEdge (source, target, optClassName) {
-  optClassName = optClassName !== 'default' ? optClassName : null
+  optClassName = optClassName !== DEFAULT_CLASS_NAME ? optClassName : null
   const id = source + '-' + target
   if (optClassName) {
     return {id, source, target, className: optClassName}

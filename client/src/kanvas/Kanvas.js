@@ -2,7 +2,7 @@
 import React from 'react'
 
 import './Kanvas.css'
-import {createNode, createEdge} from '../model/model'
+import {createNode, createEdge, DEFAULT_CLASS_NAME} from '../model/model'
 import {isInTrashCan} from '../controls/Trashcan'
 
 const JSPLUMP_DEFAULTS = {
@@ -11,7 +11,7 @@ const JSPLUMP_DEFAULTS = {
     strokeWidth: 2,
     stroke: 'rgba(100, 100, 100, 0.5)'
   },
-  Connector: [ 'StateMachine', { curviness: 10, margin: 3, proximityLimit: 80 }  ],
+  Connector: [ 'StateMachine', { curviness: 10, margin: 3, proximityLimit: 80 } ],
   Endpoint: [ 'Dot', { radius: 1 } ],
   EndpointStyle: { fill: 'none' },
   Anchor: [ 'Continuous', { shape: 'Circle' } ]
@@ -53,7 +53,7 @@ class Kanvas extends React.Component {
   }
 
   pageClick (ev) {
-    if (ev.target.id == 'petc-kanvas') {
+    if (ev.target.id === 'petc-kanvas') {
       if (this.props.controls.isNodeMode) {
         this.props.addNode(createNode(ev.pageX - 25, ev.pageY - 25,
           this.props.controls.selectedNodeClass))
@@ -217,7 +217,7 @@ class Edge extends React.Component {
       target: edge.target,
       overlays: []
     }
-    const edgeClassName = edge.className || 'default'
+    const edgeClassName = edge.className || DEFAULT_CLASS_NAME
     const optStyle = this.props.doc.style.edges[edgeClassName]
     if (optStyle) {
       Object.assign(edgeInfo, optStyle)
@@ -244,7 +244,7 @@ class Edge extends React.Component {
     }
   }
 
-  createLabelOverlay(edge) {
+  createLabelOverlay (edge) {
     const labelId = el(edge.id)
     return [ 'Label', { label: edge.label, cssClass: 'petc-edge-label', id: labelId } ]
   }

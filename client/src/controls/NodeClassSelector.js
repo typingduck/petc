@@ -3,7 +3,7 @@ import Draggable from 'react-draggable'
 
 import './NodeClassSelector.css'
 import JsonEditor from './JsonEditor'
-import {createNode} from '../model/model'
+import {createNode, DEFAULT_CLASS_NAME} from '../model/model'
 
 class NodeClassSelector extends React.Component {
   constructor (props) {
@@ -21,7 +21,7 @@ class NodeClassSelector extends React.Component {
   dragHandleStop (ev, data) {
     const nodeClass = Array.from(data.node.classList)
       .filter(s => !s.includes('react-draggable'))
-      .filter(s => !s.includes('default'))
+      .filter(s => !s.includes(DEFAULT_CLASS_NAME))
       .filter(s => !s.includes('petc-node'))
       .join(' ')
       .trim()
