@@ -1,0 +1,46 @@
+
+.petc-attr-editor {
+  background-color:  var(--editor-bg);
+  border: var(--modal-border);
+  border-radius: var(--modal-border-radius);
+  box-shadow: var(--modal-box-shadow);
+  left: 10%;
+  padding: 20px 20px 20px;
+  position: absolute;
+  top: 10%;
+  z-index: var(--z-index-modal);
+}
+
+.petc-attr-editor input {
+  background-color: var(--editor-bg);
+  border-radius: 5px;
+  border: 1px solid rgba(210, 210, 210, 1);
+  color: grey;
+  font-family: var(--font);
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+}
+
+.petc-attr-editor td {
+  text-align: center;
+}
+
+.petc-attr-editor option,
+.petc-attr-editor select {
+  background-color: var(--editor-bg);
+  border-radius: 5px;
+  border: 1px solid rgba(210, 210, 210, 1);
+  color: grey;
+  font-family: var(--font);
+  font-size: larger;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  text-indent: 30%;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+

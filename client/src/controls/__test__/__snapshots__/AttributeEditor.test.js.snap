@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders attribute editor for edge 1`] = `
+<div
+  className="petc-modal-overlay"
+  onClick={[Function]}
+>
+  <div
+    className="petc-modal petc-attr-editor"
+    onClick={[Function]}
+    style={
+      Object {
+        "left": 100,
+        "top": 100,
+      }
+    }
+  >
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            label:
+          </td>
+          <td>
+            <input
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            class:
+          </td>
+          <td>
+            <select
+              onChange={[Function]}
+              value="edge style a"
+            >
+              <option>
+                default
+              </option>
+              <option>
+                edge style a
+              </option>
+              <option>
+                edge style b
+              </option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <button
+        onClick={[Function]}
+      >
+        apply
+      </button>
+      <button
+        onClick={[Function]}
+      >
+        cancel
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders attribute editor for node 1`] = `
+<div
+  className="petc-modal-overlay"
+  onClick={[Function]}
+>
+  <div
+    className="petc-modal petc-attr-editor"
+    onClick={[Function]}
+    style={
+      Object {
+        "left": 100,
+        "top": 100,
+      }
+    }
+  >
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            label:
+          </td>
+          <td>
+            <input
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            class:
+          </td>
+          <td>
+            <select
+              onChange={[Function]}
+              value="node style a"
+            >
+              <option>
+                default
+              </option>
+              <option>
+                node style a
+              </option>
+              <option>
+                node style b
+              </option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
+    >
+      <button
+        onClick={[Function]}
+      >
+        apply
+      </button>
+      <button
+        onClick={[Function]}
+      >
+        cancel
+      </button>
+    </div>
+  </div>
+</div>
+`;
