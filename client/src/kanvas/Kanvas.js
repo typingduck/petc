@@ -28,9 +28,9 @@ class Kanvas extends React.Component {
     super(props)
     this.state = {}
 
-    this.handleClick = this.handleClick.bind(this)
-    this.selectNode = this.selectNode.bind(this)
+    this.nodeClick = this.nodeClick.bind(this)
     this.onConnectionDetach = this.onConnectionDetach.bind(this)
+    this.pageClick = this.pageClick.bind(this)
   }
 
   componentDidMount () {
@@ -41,24 +41,29 @@ class Kanvas extends React.Component {
     this.setState({jsPlmb: jsp})
   }
 
-  onConnectionDetach (info) {
-    const edgeId = info.connection.getData().edgeId
-    const props = this.props
-    if (this.props.doc.edges[edgeId]) {
-      // use timeout to fix race condition in jsPlumb
-      setTimeout(() => props.removeEdge(edgeId))
+  onConnectionDetach (info, ev) {
+    if (ev) {  // mouse event indicates jsplumb directed removal
+      const edgeId = info.connection.getData().edgeId
+      const props = this.props
+      if (this.props.doc.edges[edgeId]) {
+        // use timeout to fix race condition in jsPlumb
+        setTimeout(() => props.removeEdge(edgeId))
+      }
     }
   }
 
-  handleClick (ev) {
-    if (this.props.controls.isNodeMode) {
-      this.props.addNode(createNode(ev.pageX - 25, ev.pageY - 25,
-        this.props.controls.selectedNodeClass))
+  pageClick (ev) {
+    if (ev.target.id == 'petc-kanvas') {
+      if (this.props.controls.isNodeMode) {
+        this.props.addNode(createNode(ev.pageX - 25, ev.pageY - 25,
+          this.props.controls.selectedNodeClass))
+      }
+      this.setState({selectedNode: null})
     }
-    this.setState({selectedNode: null})
   }
 
-  selectNode (nodeId) {
+  nodeClick (node) {
+    const nodeId = node.id
     if (this.props.controls.isEdgeMode) {
       // If existing selected node then connect, otherwise select
       if (this.state.selectedNode && nodeId !== this.state.selectedNode) {
@@ -89,7 +94,7 @@ class Kanvas extends React.Component {
         node={node}
         {...this.props}
         jsPlmb={this.state.jsPlmb}
-        selectNode={this.selectNode}
+        nodeClick={this.nodeClick}
         selected={node.id === selectedNode}
         updateNode={this.props.updateNode}
       />
@@ -105,7 +110,7 @@ class Kanvas extends React.Component {
     )
 
     return (
-      <div id='petc-kanvas' onClick={this.handleClick}>
+      <div id='petc-kanvas' onClick={this.pageClick}>
         {nodes}
         {edges}
       </div>
@@ -120,7 +125,7 @@ class Node extends React.Component {
     this._isMounted = false
     this._textRotation = Math.round(10 * (Math.random() - 0.5))
 
-    this.handleClick = this.handleClick.bind(this)
+    this.nodeClick = this.nodeClick.bind(this)
     this.onDragStart = this.onDragStart.bind(this)
     this.onDrag = this.onDrag.bind(this)
     this.onDragStop = this.onDragStop.bind(this)
@@ -164,9 +169,8 @@ class Node extends React.Component {
     }
   }
 
-  handleClick (ev) {
-    ev.stopPropagation()
-    this.props.selectNode(this._nodeId)
+  nodeClick (ev) {
+    this.props.nodeClick(this.props.node, ev)
   }
 
   render () {
@@ -195,7 +199,7 @@ class Node extends React.Component {
       >
         <div
           id={this._nodeId}
-          onClick={this.handleClick}
+          onClick={this.nodeClick}
           className={className}
           style={nodeStyle}
         />
@@ -219,9 +223,7 @@ class Edge extends React.Component {
       Object.assign(edgeInfo, optStyle)
     }
     if (edge.label) {
-      edgeInfo.overlays.push(
-        [ 'Label', { label: edge.label, cssClass: 'petc-edge-label' } ]
-      )
+      edgeInfo.overlays.push(this.createLabelOverlay(edge))
     }
     edgeInfo.data = { edgeId: edge.id }
     this._connection = this.props.jsPlmb.connect(edgeInfo)
@@ -240,6 +242,11 @@ class Edge extends React.Component {
       toggleClass(this._connection.endpoints[0].canvas, 'petc-hidden', !this.props.controls.isEdgeMode)
       toggleClass(this._connection.endpoints[1].canvas, 'petc-hidden', !this.props.controls.isEdgeMode)
     }
+  }
+
+  createLabelOverlay(edge) {
+    const labelId = el(edge.id)
+    return [ 'Label', { label: edge.label, cssClass: 'petc-edge-label', id: labelId } ]
   }
 
   render () {
@@ -261,6 +268,13 @@ function toggleClass (ele, className, add) {
  */
 function nw (nodeId) {
   return nodeId + '-wrapper'
+}
+
+/**
+ * Id of label of an edge
+ */
+function el (edgeId) {
+  return edgeId + '-label'
 }
 
 export default Kanvas
