@@ -1,4 +1,4 @@
-/* global expect it jest */
+/* global beforeEach expect it jest */
 import React from 'react'
 import Renderer from 'react-test-renderer'
 
@@ -17,6 +17,10 @@ const props = {
   onApply: jest.fn(),
   onCancel: jest.fn()
 }
+
+beforeEach(() => {
+  jest.clearAllMocks()
+})
 
 it('renders jsonview', () => {
   const component = Renderer.create(<JsonEditor {...props} />)
@@ -58,6 +62,21 @@ it('calls apply with updated doc', () => {
   const applyButton = component.root.findAllByType('button')[0]
   applyButton.props.onClick()
   expect(props.onApply).toHaveBeenCalledWith('foo', updated)
+})
+
+it('should reset name warning on cancel', () => {
+  const component = Renderer.create(<JsonEditor {...props} />)
+  const nameField = component.root.findByType('input')
+  expect(nameField.props.style).toBeNull()
+
+  const applyButton = component.root.findAllByType('button')[0]
+  applyButton.props.onClick()
+  expect(nameField.props.style).toEqual({ 'borderColor': 'red' })
+
+  const cancelButton = component.root.findAllByType('button')[1]
+  cancelButton.props.onClick()
+
+  expect(nameField.props.style).toBeNull()
 })
 
 function fillNameInput (component, value) {

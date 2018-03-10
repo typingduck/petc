@@ -39,6 +39,7 @@ class JsonEditor extends React.Component {
   }
 
   cancel () {
+    this.setState({ nameWarning: false })
     this.props.onCancel()
   }
 
