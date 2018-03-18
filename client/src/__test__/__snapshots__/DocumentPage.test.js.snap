@@ -132,5 +132,23 @@ exports[`matches snapshot 1`] = `
       viewMode={"VIEW_GRAPH"}
     />
   </div>
+  <AttributeEditor
+    controls={
+      Object {
+        "storeview": true,
+      }
+    }
+    doc={
+      Object {
+        "edges": Object {},
+        "nodes": Object {},
+      }
+    }
+    docId="123"
+    docLoaded={[Function]}
+    updateEdge={[Function]}
+    updateNode={[Function]}
+    viewMode={"VIEW_GRAPH"}
+  />
 </div>
 `;

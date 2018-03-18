@@ -6,18 +6,18 @@ exports[`render with nodes and edges 1`] = `
   onClick={[Function]}
 >
   <div
-    id="a-wrapper"
+    id="node-a-wrapper"
     style={
       Object {
-        "left": 1,
+        "left": 100,
         "position": "absolute",
-        "top": 2,
+        "top": 200,
       }
     }
   >
     <div
       className="petc-node"
-      id="a"
+      id="node-a"
       onClick={[Function]}
       style={undefined}
     />
@@ -31,20 +31,89 @@ exports[`render with nodes and edges 1`] = `
     />
   </div>
   <div
-    id="b-wrapper"
+    id="node-b-wrapper"
     style={
       Object {
-        "left": 2,
+        "left": 200,
         "position": "absolute",
-        "top": 3,
+        "top": 100,
       }
     }
   >
     <div
       className="petc-node"
-      id="b"
+      id="node-b"
       onClick={[Function]}
       style={undefined}
+    />
+    <div
+      className="petc-node-label"
+      style={
+        Object {
+          "WebkitTransform": "rotate(-4deg)",
+        }
+      }
+    />
+  </div>
+  <div
+    id="a-b"
+  />
+</div>
+`;
+
+exports[`render with nodes and edges with classes 1`] = `
+<div
+  id="petc-kanvas"
+  onClick={[Function]}
+>
+  <div
+    id="node-a-wrapper"
+    style={
+      Object {
+        "left": 100,
+        "position": "absolute",
+        "top": 200,
+      }
+    }
+  >
+    <div
+      className="petc-node classA"
+      id="node-a"
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "red",
+        }
+      }
+    />
+    <div
+      className="petc-node-label"
+      style={
+        Object {
+          "WebkitTransform": "rotate(-4deg)",
+        }
+      }
+    />
+  </div>
+  <div
+    id="node-b-wrapper"
+    style={
+      Object {
+        "left": 200,
+        "position": "absolute",
+        "top": 100,
+      }
+    }
+  >
+    <div
+      className="petc-node classB"
+      id="node-b"
+      onClick={[Function]}
+      style={
+        Object {
+          "color": "blue",
+        }
+      }
     />
     <div
       className="petc-node-label"
@@ -77,9 +146,9 @@ exports[`should show node label 1`] = `
     id="node-wrapper"
     style={
       Object {
-        "left": 10,
+        "left": 100,
         "position": "absolute",
-        "top": 20,
+        "top": 100,
       }
     }
   >

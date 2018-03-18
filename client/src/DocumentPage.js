@@ -1,5 +1,6 @@
 import React from 'react'
 
+import AttributeEditor from './controls/AttributeEditor'
 import BreadCrumbs from './controls/BreadCrumbs'
 import EdgeClassSelector from './controls/EdgeClassSelector'
 import Kanvas from './kanvas/Kanvas'
@@ -23,6 +24,7 @@ export default class DocumentPage extends React.Component {
     this.updateNode = this.updateNode.bind(this)
     this.removeNode = this.removeNode.bind(this)
     this.addEdge = this.addEdge.bind(this)
+    this.updateEdge = this.updateEdge.bind(this)
     this.removeEdge = this.removeEdge.bind(this)
     this.addEdgeClass = this.addEdgeClass.bind(this)
     this.setDoc = this.setDoc.bind(this)
@@ -85,6 +87,11 @@ export default class DocumentPage extends React.Component {
     this.socket.addEdge(edge)
   }
 
+  updateEdge (edge) {
+    this.props.updateEdge(edge)
+    this.socket.updateEdge(edge)
+  }
+
   removeEdge (edgeId) {
     this.props.removeEdge(edgeId)
     this.socket.removeEdge(edgeId)
@@ -124,6 +131,11 @@ export default class DocumentPage extends React.Component {
         <BreadCrumbs {...this.props} />
         <StoreView {...this.props} />
       </div>
+      <AttributeEditor
+        {...this.props}
+        updateNode={this.updateNode}
+        updateEdge={this.updateEdge}
+      />
     </div>)
   }
 }

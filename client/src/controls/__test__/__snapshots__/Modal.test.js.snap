@@ -8,6 +8,12 @@ exports[`renders modal 1`] = `
   <div
     className="petc-modal custom-clss"
     onClick={[Function]}
+    style={
+      Object {
+        "left": "123",
+        "top": "321",
+      }
+    }
   >
     <div
       id="inner"

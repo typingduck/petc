@@ -28,6 +28,7 @@ class Kanvas extends React.Component {
     super(props)
     this.state = {}
 
+    this.edgeClick = this.edgeClick.bind(this)
     this.nodeClick = this.nodeClick.bind(this)
     this.onConnectionDetach = this.onConnectionDetach.bind(this)
     this.pageClick = this.pageClick.bind(this)
@@ -38,6 +39,7 @@ class Kanvas extends React.Component {
     // Fix for jsplumb overwritting prototype Defaults
     jsp.Defaults = Object.assign({}, jsp.Defaults, JSPLUMP_DEFAULTS)
     jsp.bind('connectionDetached', this.onConnectionDetach)
+    jsp.bind('click', this.edgeClick)
     this.setState({jsPlmb: jsp})
   }
 
@@ -62,9 +64,12 @@ class Kanvas extends React.Component {
     }
   }
 
-  nodeClick (node) {
+  nodeClick (node, ev) {
     const nodeId = node.id
-    if (this.props.controls.isEdgeMode) {
+    if (this.props.controls.isNodeMode) {
+      const {pageX, pageY} = ev
+      this.props.setEditAttributes({id: node.id, pageX, pageY})
+    } else if (this.props.controls.isEdgeMode) {
       // If existing selected node then connect, otherwise select
       if (this.state.selectedNode && nodeId !== this.state.selectedNode) {
         this.props.addEdge(
@@ -73,6 +78,14 @@ class Kanvas extends React.Component {
       } else {
         this.setState({selectedNode: nodeId})
       }
+    }
+  }
+
+  edgeClick (connection, ev) {
+    if (this.props.controls.isEdgeMode) {
+      const edgeId = connection.getData().edgeId
+      const {pageX, pageY} = ev
+      this.props.setEditAttributes({id: edgeId, pageX, pageY})
     }
   }
 
@@ -151,6 +164,7 @@ class Node extends React.Component {
   onDragStart () { }
 
   onDrag (ev) {
+    this._dragging = true
     this.props.draggingNode({
       id: this._nodeId,
       x: ev.e.pageX,
@@ -170,7 +184,10 @@ class Node extends React.Component {
   }
 
   nodeClick (ev) {
-    this.props.nodeClick(this.props.node, ev)
+    if (!this._dragging) {
+      this.props.nodeClick(this.props.node, ev)
+    }
+    this._dragging = null
   }
 
   render () {
@@ -220,9 +237,10 @@ class Edge extends React.Component {
     const edgeClassName = edge.className || DEFAULT_CLASS_NAME
     const optStyle = this.props.doc.style.edges[edgeClassName]
     if (optStyle) {
-      Object.assign(edgeInfo, optStyle)
+      Object.assign(edgeInfo, JSON.parse(JSON.stringify(optStyle))) // deep
     }
     if (edge.label) {
+      this._setLabel = edge.label
       edgeInfo.overlays.push(this.createLabelOverlay(edge))
     }
     edgeInfo.data = { edgeId: edge.id }
@@ -241,6 +259,12 @@ class Edge extends React.Component {
     if (this._connection) {
       toggleClass(this._connection.endpoints[0].canvas, 'petc-hidden', !this.props.controls.isEdgeMode)
       toggleClass(this._connection.endpoints[1].canvas, 'petc-hidden', !this.props.controls.isEdgeMode)
+    }
+    if (this._setLabel !== this.props.edge.label) {
+      const conn = this._connection
+      conn.removeOverlay(el(this.props.edge.id))
+      conn.addOverlay(this.createLabelOverlay(this.props.edge))
+      this._setLabel = this.props.edge.label
     }
   }
 

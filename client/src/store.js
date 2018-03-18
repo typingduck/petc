@@ -33,6 +33,7 @@ const Events = {
   UPDATE_NODE:    Symbol('UPDATE_NODE'),
   DELETE_NODE:    Symbol('DELETE_NODE'),
   ADD_EDGE:       Symbol('ADD_EDGE'),
+  UPDATE_EDGE:    Symbol('UPDATE_EDGE'),
   DELETE_EDGE:    Symbol('DELETE_EDGE'),
   ADD_EDGE_CLASS: Symbol('ADD_EDGE_CLASS'),
   APPLY_PATCH:    Symbol('APPLY_PATCH'),
@@ -40,6 +41,7 @@ const Events = {
   DRAGGING_NODE:     Symbol('DRAGGING_NODE'),
   SELECT_NODE_CLASS: Symbol('SELECT_NODE_CLASS'),
   SELECT_EDGE_CLASS: Symbol('SELECT_EDGE_CLASS'),
+  EDIT_ATTRS:   Symbol('EDIT_ATTRS'),
 }
 /* eslint-enable key-spacing */
 
@@ -61,6 +63,7 @@ function docReducer (state, action) {
     case Events.DELETE_NODE:
       return state.removeIn(['nodes', action.nodeId])
     case Events.ADD_EDGE:
+    case Events.UPDATE_EDGE:
       return state.setIn(['edges', action.edge.id], action.edge)
     case Events.DELETE_EDGE:
       return state.removeIn(['edges', action.edgeId])
@@ -90,6 +93,8 @@ function controlsReducer (state, action) {
       return state.set('selectedNodeClass', action.clss)
     case Events.SELECT_EDGE_CLASS:
       return state.set('selectedEdgeClass', action.clss)
+    case Events.EDIT_ATTRS:
+      return state.set('editAttributes', action.item)
     default:
       return state
   }
@@ -138,6 +143,7 @@ function mapDispatchToProps (dispatch) {
     updateNode:   node => dispatch({ type: Events.UPDATE_NODE,  node }),
     removeNode: nodeId => dispatch({ type: Events.DELETE_NODE,  nodeId }),
        addEdge:   edge => dispatch({ type: Events.ADD_EDGE,     edge }),
+    updateEdge:   edge => dispatch({ type: Events.UPDATE_EDGE,  edge }),
     removeEdge: edgeId => dispatch({ type: Events.DELETE_EDGE,  edgeId }),
     applyPatch:  patch => dispatch({ type: Events.APPLY_PATCH, patch }),
 
@@ -148,6 +154,7 @@ function mapDispatchToProps (dispatch) {
     selectNodeClass: clss => dispatch({ type: Events.SELECT_NODE_CLASS, clss }),
     selectEdgeClass: clss => dispatch({ type: Events.SELECT_EDGE_CLASS, clss }),
 
+    setEditAttributes: item => dispatch({ type: Events.EDIT_ATTRS, item }),
   }
   /* eslint-enable no-multi-spaces */
   /* eslint-enable key-spacing */

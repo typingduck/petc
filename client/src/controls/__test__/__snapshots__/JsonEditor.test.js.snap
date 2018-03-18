@@ -8,6 +8,12 @@ exports[`renders jsonview 1`] = `
   <div
     className="petc-modal petc-json-editor"
     onClick={[Function]}
+    style={
+      Object {
+        "left": "10%",
+        "top": "10%",
+      }
+    }
   >
     <div
       className="petc-json-editor-name"

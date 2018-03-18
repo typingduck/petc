@@ -49,6 +49,8 @@ class JsonEditor extends React.Component {
         className='petc-json-editor'
         isOpen={this.props.isOpen}
         onRequestClose={this.cancel}
+        pageX='10%'
+        pageY='10%'
       >
         <div className='petc-json-editor-name'>
           name:

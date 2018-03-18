@@ -4,10 +4,8 @@
   border: var(--modal-border);
   border-radius: var(--modal-border-radius);
   box-shadow: var(--modal-box-shadow);
-  left: 10%;
   padding: 20px 20px 20px;
   position: absolute;
-  top: 10%;
   z-index: var(--z-index-modal);
 }
 

@@ -7,6 +7,8 @@ import Modal from '../Modal'
 const props = {
   isOpen: true,
   className: 'custom-clss',
+  pageX: '123',
+  pageY: '321',
   onRequestClose: jest.fn()
 }
 
