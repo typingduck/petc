@@ -2,7 +2,7 @@ import lint from 'mocha-eslint'
 
 var paths = [
   'src/**/*.js',
-  'test/**/*.js'
+  'spec/**/*.js'
 ]
 
 var options = {

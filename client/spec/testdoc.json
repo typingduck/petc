@@ -1,0 +1,42 @@
+{
+  "nodes": {
+    "n-01": {
+      "id": "n-01",
+      "label": "n.one",
+      "x": 500,
+      "y": 100
+    },
+    "n-02": {
+      "id": "n-02",
+      "label": "n.two",
+      "x": 250,
+      "y": 350
+    },
+    "n-03": {
+      "id": "n-03",
+      "label": "n.three",
+      "x": 750,
+      "y": 350
+    }
+  },
+  "edges": {
+    "e-01": {
+      "id": "e-01",
+      "label": "e.one",
+      "source": "n-01",
+      "target": "n-02"
+    },
+    "e-02": {
+      "id": "e-02",
+      "label": "e.two",
+      "source": "n-02",
+      "target": "n-03"
+    }
+  },
+  "style": {
+    "nodes": {
+    },
+    "edges": {
+    }
+  }
+}

@@ -20,5 +20,6 @@
 }
 
 #petc-trashcan.hidden {
+  /* Make transparent instead of hide so that react bounding rectangle work */
   color: rgba(0, 0, 0, 0.0);
 }
