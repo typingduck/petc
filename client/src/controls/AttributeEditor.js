@@ -116,7 +116,7 @@ class AttributeEditor extends React.Component {
             </td>
           </tr>
           <tr>
-            <td>class:</td>
+            <td>style:</td>
             <td>
               <select
                 value={this.state.className}

@@ -53,7 +53,7 @@ class EdgeClassSelectorInternal extends React.Component {
   }
 
   liClassName (className) {
-    return this.classSelected(className) ? 'selected' : null
+    return this.classSelected(className) ? 'active' : null
   }
 
   toggleNewEdgeClassDialog () {
@@ -75,7 +75,7 @@ class EdgeClassSelectorInternal extends React.Component {
       (this.props.doc.style && this.props.doc.style.edges) || {}
     )) || {}
     return (
-      <div id='petc-edge-select-control'>
+      <div id='petc-edge-select-control' className='petc-controls'>
         <ul>
           {Object.entries(edgeClasses).map(([className, style]) =>
             <li
@@ -91,7 +91,7 @@ class EdgeClassSelectorInternal extends React.Component {
               <div>{className}</div>
             </li>
           )}
-          <li onClick={this.toggleNewEdgeClassDialog}> + new </li>
+          <li onClick={this.toggleNewEdgeClassDialog}> + new <br/> style </li>
         </ul>
         <JsonEditor
           json={templateEdgeClass()}

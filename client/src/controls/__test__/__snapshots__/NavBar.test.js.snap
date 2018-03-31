@@ -2,6 +2,7 @@
 
 exports[`renders edit edges mode 1`] = `
 <div
+  className="petc-controls"
   id="petc-view-mode-control"
 >
   <ul>
@@ -129,6 +130,7 @@ exports[`renders edit edges mode 1`] = `
 
 exports[`renders edit nodes mode 1`] = `
 <div
+  className="petc-controls"
   id="petc-view-mode-control"
 >
   <ul>
@@ -256,6 +258,7 @@ exports[`renders edit nodes mode 1`] = `
 
 exports[`renders pan and zoom mode 1`] = `
 <div
+  className="petc-controls"
   id="petc-view-mode-control"
 >
   <ul>
@@ -383,6 +386,7 @@ exports[`renders pan and zoom mode 1`] = `
 
 exports[`renders view mode 1`] = `
 <div
+  className="petc-controls"
   id="petc-view-mode-control"
 >
   <ul>

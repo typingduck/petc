@@ -2,7 +2,6 @@
   bottom: 0;
   color: grey;
   left: 0;
-  overflow: hidden;
   padding: 0;
   position: absolute;
   right: 0;
@@ -20,8 +19,8 @@
   border-radius: 20px;
   border: 10px solid grey;
   display: block;
-  margin: auto;
   height: 16px;
+  margin: auto;
   width: 16px;
 }
 
@@ -38,7 +37,7 @@
 }
 
 .petc-endpoint {
+  background-color: rgba(255, 255, 255, 1);
   border-radius: 6px;
   border: 1px dashed grey;
-  background-color: rgba(255, 255, 255, 1);
 }

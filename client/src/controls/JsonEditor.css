@@ -1,13 +1,8 @@
 
 .petc-json-editor {
-  background-color:  var(--editor-bg);
-  border: var(--modal-border);
-  border-radius: var(--modal-border-radius);
-  box-shadow: var(--modal-box-shadow);
   padding: 20px 20px 20px;
   position: absolute;
   width: 400px;
-  z-index: var(--z-index-modal);
 }
 
 .petc-json-editor button {

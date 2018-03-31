@@ -31,7 +31,7 @@ exports[`renders attribute editor for edge 1`] = `
         </tr>
         <tr>
           <td>
-            class:
+            style:
           </td>
           <td>
             <select
@@ -105,7 +105,7 @@ exports[`renders attribute editor for node 1`] = `
         </tr>
         <tr>
           <td>
-            class:
+            style:
           </td>
           <td>
             <select

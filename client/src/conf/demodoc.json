@@ -4,69 +4,69 @@
       "id": "web",
       "label": "web",
       "className": "web",
-      "x": 100,
-      "y": 50
+      "x": 130,
+      "y": 110
     },
     "mobile": {
       "id": "mobile",
       "label": "mobile",
       "className": "mobile",
       "x": 150,
-      "y": 400
+      "y": 508
     },
     "lb-1": {
       "id": "lb-1",
       "label": "lb 1",
       "className": "lb",
       "x": 375,
-      "y": 300
+      "y": 200
     },
     "lb-2": {
       "id": "lb-2",
       "label": "lb 2",
       "className": "lb",
       "x": 375,
-      "y": 150
+      "y": 434
     },
     "server-1": {
       "id": "server-1",
       "label": "server 1",
       "className": "server",
       "x": 575,
-      "y": 50
+      "y": 90
     },
     "server-2": {
       "id": "server-2",
       "label": "server 2",
       "x": 575,
-      "y": 150
+      "y": 210
     },
     "server-3": {
       "id": "server-3",
       "label": "server 3",
       "className": "server",
       "x": 575,
-      "y": 250
+      "y": 330
     },
     "server-4": {
       "id": "server-4",
       "label": "server 4",
       "x": 575,
-      "y": 350
+      "y": 450
     },
     "server-5": {
       "id": "server-5",
       "label": "server 5",
       "className": "server",
       "x": 575,
-      "y": 450
+      "y": 570
     },
     "mysql": {
       "id": "mysql",
       "label": "mysql",
       "className": "mysql",
       "x": 825,
-      "y": 250
+      "y": 305
     }
   },
   "edges": {

@@ -74,7 +74,7 @@ it('highlights selected class', () => {
   expect(redNode.props.className).toBeNull()
 
   const blueNode = nodeFromUl(ul, 2)
-  expect(blueNode.props.className).toEqual(expect.stringContaining('selected'))
+  expect(blueNode.props.className).toEqual(expect.stringContaining('active'))
 })
 
 it('click to select node', () => {

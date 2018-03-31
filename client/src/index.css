@@ -1,11 +1,10 @@
 :root {
   --font: "Comic Sans MS", "Comic Sans", cursive;
 
-  --modal-bg: rgba(210, 210, 210, 0.5);
+  --modal-bg: none;
   --modal-border-radius: 10px;
   --modal-border-wide: 5px;
-  --modal-border: 2px solid #666;
-  --modal-box-shadow: 2px 2px 5px rgba(200, 200, 200, 0.25);
+  --modal-border: none;
 
   --editor-bg: #FFF;
 
@@ -13,6 +12,14 @@
   --z-index-page-bg:  50;
   --z-index-kanvas:  100;
   --z-index-modal:   200;
+
+  --box-shadow-1: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --box-shadow-2: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+  --box-shadow-3: 0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+  --box-shadow-4: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -7px rgba(0,0,0,0.2);
+  --box-shadow-5: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+
+  --petc-control-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 body {
@@ -26,7 +33,7 @@ body {
 h1 {
   bottom: 25px;
   color: rgba(0, 0, 0, 0.2);
-  position: absolute;
+  position: fixed;
   right: 130px;
   text-align: center;
   width: 70px;
@@ -41,13 +48,47 @@ h1 {
 .petc-pageview {
   background-color: #FFF;
   border-radius: 10px;
-  border: 1px solid #BBB;
   bottom: 5px;
-  box-shadow: 1px 1px 7px #888888;
+  box-shadow: var(--box-shadow-2);
   left: 5px;
   margin: 5px 5px 10px 5px;
+  overflow: scroll;
   position: absolute;
   right: 5px;
   top: 5px;
   z-index: var(--z-index-base);
 }
+
+/*
+  Common styles applied to edge controls/buttons.
+*/
+.petc-controls {
+  background-color: var(--modal-bg);
+  border-radius: var(--modal-border-radius);
+  border: var(--modal-border);
+  z-index: var(--z-index-modal);
+}
+
+.petc-controls li {
+  display: inline-block;
+  padding: 7px;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow-1);
+  margin: 2px;
+  opacity: 0.9;
+  background-color: white;
+  position:relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.petc-controls li:hover {
+  box-shadow: var(--box-shadow-3);
+  z-index: 2;
+}
+
+.petc-controls li.active {
+  box-shadow: var(--box-shadow-3);
+  z-index: 3;
+}
+

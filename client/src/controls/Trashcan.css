@@ -5,7 +5,7 @@
   font-size: 96px;
   left: 50%;
   margin-left: -50px; 
-  position: absolute;
+  position: fixed;
   text-align: center;
   width: 100px;
   z-index: var(--z-index-page-bg)
@@ -20,6 +20,6 @@
 }
 
 #petc-trashcan.hidden {
-  /* Make transparent instead of hide so that react bounding rectangle work */
+  /* Make transparent instead of hide so that react bounding rectangle works */
   color: rgba(0, 0, 0, 0.0);
 }

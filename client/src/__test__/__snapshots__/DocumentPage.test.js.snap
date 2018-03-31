@@ -2,25 +2,25 @@
 
 exports[`matches snapshot 1`] = `
 <div>
-  <NavBar
-    controls={
-      Object {
-        "storeview": true,
-      }
-    }
-    doc={
-      Object {
-        "edges": Object {},
-        "nodes": Object {},
-      }
-    }
-    docId="123"
-    docLoaded={[Function]}
-    viewMode={"VIEW_GRAPH"}
-  />
   <div
     className="petc-pageview"
   >
+    <NavBar
+      controls={
+        Object {
+          "storeview": true,
+        }
+      }
+      doc={
+        Object {
+          "edges": Object {},
+          "nodes": Object {},
+        }
+      }
+      docId="123"
+      docLoaded={[Function]}
+      viewMode={"VIEW_GRAPH"}
+    />
     <h1>
       pannus et circulos
     </h1>

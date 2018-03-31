@@ -1,10 +1,18 @@
 
 .petc-modal-overlay {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.1);
   bottom: 0;
   left: 0;
   overflow: scroll;
   position: fixed;
   right: 0;
   top: 0;
+}
+
+.petc-modal {
+  background-color:  var(--editor-bg);
+  border: var(--modal-border);
+  border-radius: var(--modal-border-radius);
+  box-shadow: var(--box-shadow-5);
+  z-index: var(--z-index-modal);
 }

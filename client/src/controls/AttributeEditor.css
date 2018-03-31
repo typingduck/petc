@@ -1,12 +1,7 @@
 
 .petc-attr-editor {
-  background-color:  var(--editor-bg);
-  border: var(--modal-border);
-  border-radius: var(--modal-border-radius);
-  box-shadow: var(--modal-box-shadow);
   padding: 20px 20px 20px;
   position: absolute;
-  z-index: var(--z-index-modal);
 }
 
 .petc-attr-editor input {
@@ -34,8 +29,8 @@
   font-size: larger;
   font-weight: bold;
   text-align: center;
-  width: 100%;
   text-indent: 30%;
+  width: 100%;
 
   -webkit-appearance: none;
   -moz-appearance: none;

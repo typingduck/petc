@@ -90,7 +90,7 @@ it('highlights selected edge class', () => {
   expect(redEdge.props.className).toBeNull()
 
   const blueEdge = edgeFromUl(ul, 2)
-  expect(blueEdge.props.className).toEqual(expect.stringContaining('selected'))
+  expect(blueEdge.props.className).toEqual(expect.stringContaining('active'))
 })
 
 it('click to select edge', () => {

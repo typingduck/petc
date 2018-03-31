@@ -104,8 +104,8 @@ export default class DocumentPage extends React.Component {
 
   render () {
     return (<div>
-      <NavBar {...this.props} />
       <div className='petc-pageview'>
+        <NavBar {...this.props} />
         <h1>pannus et circulos</h1>
         <Kanvas
           {...this.props}

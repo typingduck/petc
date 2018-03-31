@@ -70,7 +70,7 @@ export default class NavBar extends React.Component {
       </li>
     )
     return (
-      <div id='petc-view-mode-control'>
+      <div id='petc-view-mode-control' className='petc-controls'>
         <ul> {buttons} </ul>
       </div>
     )

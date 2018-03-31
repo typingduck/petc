@@ -2,6 +2,7 @@
 
 exports[`click to show new node class editor 1`] = `
 <div
+  className="petc-controls"
   id="petc-node-select-control"
 >
   <ul>
@@ -80,6 +81,8 @@ exports[`click to show new node class editor 1`] = `
       onClick={[Function]}
     >
        + new 
+      <br />
+       style 
     </li>
   </ul>
   <div
@@ -1213,6 +1216,7 @@ exports[`click to show new node class editor 1`] = `
 
 exports[`click to show new node class editor 2`] = `
 <div
+  className="petc-controls"
   id="petc-node-select-control"
 >
   <ul>
@@ -1291,6 +1295,8 @@ exports[`click to show new node class editor 2`] = `
       onClick={[Function]}
     >
        + new 
+      <br />
+       style 
     </li>
   </ul>
 </div>
@@ -1298,6 +1304,7 @@ exports[`click to show new node class editor 2`] = `
 
 exports[`shows custom node styles 1`] = `
 <div
+  className="petc-controls"
   id="petc-node-select-control"
 >
   <ul>
@@ -1376,6 +1383,8 @@ exports[`shows custom node styles 1`] = `
       onClick={[Function]}
     >
        + new 
+      <br />
+       style 
     </li>
   </ul>
 </div>
@@ -1383,6 +1392,7 @@ exports[`shows custom node styles 1`] = `
 
 exports[`visible when node view mode 1`] = `
 <div
+  className="petc-controls"
   id="petc-node-select-control"
 >
   <ul>
@@ -1413,6 +1423,8 @@ exports[`visible when node view mode 1`] = `
       onClick={[Function]}
     >
        + new 
+      <br />
+       style 
     </li>
   </ul>
 </div>

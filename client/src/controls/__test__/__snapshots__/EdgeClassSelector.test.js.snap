@@ -2,6 +2,7 @@
 
 exports[`click to show new edge class editor 1`] = `
 <div
+  className="petc-controls"
   id="petc-edge-select-control"
 >
   <ul>
@@ -69,6 +70,8 @@ exports[`click to show new edge class editor 1`] = `
       onClick={[Function]}
     >
        + new 
+      <br />
+       style 
     </li>
   </ul>
   <div
@@ -1467,6 +1470,7 @@ exports[`click to show new edge class editor 1`] = `
 
 exports[`click to show new edge class editor 2`] = `
 <div
+  className="petc-controls"
   id="petc-edge-select-control"
 >
   <ul>
@@ -1534,6 +1538,8 @@ exports[`click to show new edge class editor 2`] = `
       onClick={[Function]}
     >
        + new 
+      <br />
+       style 
     </li>
   </ul>
 </div>
@@ -1541,6 +1547,7 @@ exports[`click to show new edge class editor 2`] = `
 
 exports[`shows custom edge styles 1`] = `
 <div
+  className="petc-controls"
   id="petc-edge-select-control"
 >
   <ul>
@@ -1608,6 +1615,8 @@ exports[`shows custom edge styles 1`] = `
       onClick={[Function]}
     >
        + new 
+      <br />
+       style 
     </li>
   </ul>
 </div>
@@ -1615,6 +1624,7 @@ exports[`shows custom edge styles 1`] = `
 
 exports[`visible when edge view mode 1`] = `
 <div
+  className="petc-controls"
   id="petc-edge-select-control"
 >
   <ul>
@@ -1642,6 +1652,8 @@ exports[`visible when edge view mode 1`] = `
       onClick={[Function]}
     >
        + new 
+      <br />
+       style 
     </li>
   </ul>
 </div>

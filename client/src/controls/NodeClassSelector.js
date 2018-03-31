@@ -62,7 +62,7 @@ class NodeClassSelector extends React.Component {
   }
 
   liClassName (className) {
-    return this.classSelected(className) ? 'selected' : null
+    return this.classSelected(className) ? 'active' : null
   }
 
   createNodeClassView (className, style) {
@@ -92,12 +92,12 @@ class NodeClassSelector extends React.Component {
 
     if (this.props.controls.isNodeMode) {
       return (
-        <div id='petc-node-select-control'>
+        <div id='petc-node-select-control' className='petc-controls'>
           <ul>
             {Object.entries(nodeClasses).map(([className, style]) =>
               this.createNodeClassView(className, style)
             )}
-            <li onClick={this.toggleNewNodeClassDialog}> + new </li>
+            <li onClick={this.toggleNewNodeClassDialog}> + new <br/> style </li>
           </ul>
           <JsonEditor
             isOpen={this.state.nodeClassDialogVisible}
