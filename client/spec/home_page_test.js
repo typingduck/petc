@@ -21,7 +21,7 @@ test('should allow create new doc', async t => {
   const location = await t.eval(() => window.location)
   await t
     .expect(location.pathname).match(/\/docs\/.*/)
-    .expect(s.nodes.count).eql(1)  // 1 for node sidebar editor
+    .expect(s.nodes.count).eql(0)
     .expect(s.edges.count).eql(0)
 })
 

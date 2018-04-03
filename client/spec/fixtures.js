@@ -19,10 +19,10 @@ const readFileAsync = util.promisify(fs.readFile)
  * Using the API setup a sample document with 3 nodes and 3 edges.
  */
 async function createNewDoc () {
-  var docid = 'test-' + uuid.v4()
-  var data = await readFileAsync(path.join(__dirname, 'testdoc.json'))
-  var obj = JSON.parse(data)
-  var apiUrl = `${s.apiUrl}/docs/${docid}`
+  const docid = 'test-' + uuid.v4()
+  const data = await readFileAsync(path.join(__dirname, 'testdoc.json'))
+  const obj = JSON.parse(data)
+  const apiUrl = `${s.apiUrl}/docs/${docid}`
   try {
     await axios.put(apiUrl, obj)
   } catch (e) {
@@ -37,8 +37,8 @@ async function createNewDoc () {
  * Create a prefilled test document and navigate to it before tests start.
  */
 module.exports.initializeNewTestDoc = async (testController) => {
-  var docid = await createNewDoc()
-  var docUrl = s.docUrl(docid)
+  const docid = await createNewDoc()
+  const docUrl = s.docUrl(docid)
   testController.fixtureCtx.docid = docid
   testController.fixtureCtx.docUrl = docUrl
   // TODO: would be nice if there was a way to set this up in the testCafe
