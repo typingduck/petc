@@ -136,6 +136,14 @@ describe('/docs complicated', () => {
       .expect(removeMetaKeys)
       .expect(200, patchedDoc, done)
   })
+
+  it('should patch doc (without content type json header)', done => {
+    request(app)
+      .patch(`/docs/${docId}`)
+      // send string instead of object (means no content-type header added)
+      .send('{ "op": "replace", "path": "/a", "value": "s" }')
+      .expect(200, done)
+  })
 })
 
 function removeMetaKeys (response) {

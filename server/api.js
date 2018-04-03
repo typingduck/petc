@@ -23,6 +23,12 @@ if (!process.env.LOADED_MOCHA_OPTS) {
   app.use(requestLogger('combined'))
 }
 
+// default to json content type so clients like curl are simpler
+app.use((req, res, next) => {
+  req.headers['content-type'] = 'application/json'
+  next()
+})
+
 app.use(bodyParser.json())
 
 // Allows CORS requests.
