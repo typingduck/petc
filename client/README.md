@@ -11,11 +11,11 @@ React based app for viewing/editing JSON based document.
 
     npm test
 
-## Integration Testing
+## Integration Testing (using [TestCafe](https://github.com/DevExpress/testcafe))
 
 Start db, api server and client resources server.
 
-    npm run itest
+    npm run spec
 
 ## Build
 

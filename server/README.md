@@ -1,7 +1,8 @@
-# Server
+# Pannus et Circulos API Server
 
-For storing and retrieving a JSON document as well as applying JSON patches
-[rfc6902](https://tools.ietf.org/html/rfc6902).
+An API for storing and retrieving a JSON document as well as applying JSON patches
+[rfc6902](https://tools.ietf.org/html/rfc6902) through API patch requests and
+websockets (for realtime collaboration).
 
 ## API
 
@@ -20,20 +21,20 @@ For storing and retrieving a JSON document as well as applying JSON patches
 * **PATCH** `/docs/:docId`
 
 > Patch a JSON document. See [json patch reference](http://jsonpatch.com/) E.g
-
-```
-PATCH /docs/838EE128-CB89-4833-BBB6-CA1E51BB5F28
-
-[
-  { "op": "replace", "path": "/baz", "value": "boo" },
-  { "op": "add", "path": "/hello", "value": ["world"] },
-  { "op": "remove", "path": "/foo"}
-]
-```
+> 
+> ```bash
+> curl -X PATCH -d '
+> [
+>   { "op": "replace", "path": "/baz", "value": "boo" },
+>   { "op": "add", "path": "/hello", "value": ["world"] },
+>   { "op": "remove", "path": "/foo"}
+> ]
+>' http://api-server/docs/$DOCID
+> ```
 
 ## Sockets
 
-Uses [socket.io](https://socket.io/) to create websockets for pushing update to
+Uses [socket.io](https://socket.io/) for websockets to push document updates to
 web clients. Events:
 
 * **'doc-select'**
