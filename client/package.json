@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "enumify": "^1.0.4",
+    "hoek": "^4.2.1",
     "immutable": "^3.8.2",
     "json-patch": "^0.7.0",
     "jsplumb": "^2.6.8",
